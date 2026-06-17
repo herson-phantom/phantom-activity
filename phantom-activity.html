@@ -474,14 +474,14 @@ const ICON_CANCEL = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none"
 </defs>
 </svg>`;
 const ICON_DEACTIVATE = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.8335 10.9997C1.8335 5.93706 5.93755 1.83301 11.0002 1.83301C13.2013 1.83301 15.2213 2.60884 16.8015 3.90197L3.90246 16.801C2.60933 15.2208 1.8335 13.2008 1.8335 10.9997Z" fill="url(#paint0_linear_72_5835)"/>
-<path d="M5.19883 18.0974C6.77904 19.3905 8.799 20.1663 11.0002 20.1663C16.0628 20.1663 20.1668 16.0623 20.1668 10.9997C20.1668 8.79851 19.391 6.77855 18.0979 5.19834L5.19883 18.0974Z" fill="url(#paint1_linear_72_5835)"/>
+<path d="M11 6.41667C11.5063 6.41667 11.9167 6.82707 11.9167 7.33333V16.1204L14.2477 13.7894C14.6057 13.4314 15.186 13.4314 15.544 13.7894C15.9019 14.1474 15.9019 14.7276 15.544 15.0856L11.6481 18.9814C11.2901 19.3394 10.7099 19.3394 10.3519 18.9814L6.45606 15.0856C6.09808 14.7276 6.09808 14.1474 6.45606 13.7894C6.81404 13.4314 7.3943 13.4314 7.75228 13.7894L10.0833 16.1204V7.33333C10.0833 6.82707 10.4937 6.41667 11 6.41667Z" fill="url(#paint0_ic_deact)"/>
+<path d="M17.4167 2.75C17.9229 2.75 18.3333 3.16041 18.3333 3.66667C18.3333 4.17293 17.9229 4.58333 17.4167 4.58333H4.58334C4.07708 4.58333 3.66667 4.17293 3.66667 3.66667C3.66667 3.16041 4.07708 2.75 4.58334 2.75H17.4167Z" fill="url(#paint1_ic_deact)"/>
 <defs>
-<linearGradient id="paint0_linear_72_5835" x1="11.0002" y1="1.83301" x2="11.0002" y2="20.1663" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_ic_deact" x1="11" y1="2.75" x2="11" y2="19.2499" gradientUnits="userSpaceOnUse">
 <stop stop-color="#E3E4E4" stop-opacity="0.8"/>
 <stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/>
 </linearGradient>
-<linearGradient id="paint1_linear_72_5835" x1="11.0002" y1="1.83301" x2="11.0002" y2="20.1663" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint1_ic_deact" x1="11" y1="2.75" x2="11" y2="19.2499" gradientUnits="userSpaceOnUse">
 <stop stop-color="#E3E4E4" stop-opacity="0.8"/>
 <stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/>
 </linearGradient>
@@ -495,6 +495,42 @@ const ICON_RECOVER = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none
 <stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/>
 </linearGradient>
 </defs>
+</svg>`;
+
+const ICON_BRIDGE = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.99 5.0097C15.1988 3.21856 12.2948 3.21856 10.5037 5.0097L10.4994 5.01396L9.81057 5.69377C9.45024 6.04939 8.86985 6.04557 8.51423 5.68525C8.15861 5.32492 8.16243 4.74453 8.52276 4.38891L9.20952 3.71112C11.7168 1.20623 15.78 1.20697 18.2863 3.71334C20.7927 6.21973 20.7934 10.2829 18.2885 12.7902C18.2878 12.7909 18.2871 12.7916 18.2863 12.7924L17.6108 13.4769C17.2551 13.8372 16.6748 13.8411 16.3144 13.4854C15.9541 13.1298 15.9503 12.5494 16.3059 12.1891L16.99 11.496C18.7811 9.70484 18.7811 6.80084 16.99 5.0097ZM5.68557 8.51391C6.04589 8.86953 6.04971 9.44992 5.69409 9.81025L5.01003 10.5034C3.21889 12.2945 3.21888 15.1985 5.01002 16.9896C6.80116 18.7808 9.70518 18.7808 11.4963 16.9896L11.5006 16.9854L12.1894 16.3056C12.5498 15.95 13.1301 15.9538 13.4858 16.3141C13.8414 16.6744 13.8376 17.2548 13.4772 17.6104L12.7927 18.286C12.7919 18.2868 12.7912 18.2875 12.7905 18.2882C10.2832 20.7931 6.22002 20.7924 3.71366 18.286C1.20729 15.7796 1.20655 11.7165 3.71145 9.20919L4.38923 8.52244C4.74485 8.16211 5.32524 8.15829 5.68557 8.51391ZM13.4815 8.51816C13.8395 8.87614 13.8395 9.45654 13.4815 9.81452L9.81484 13.4812C9.45686 13.8392 8.87646 13.8392 8.51848 13.4812C8.1605 13.1232 8.1605 12.5428 8.51848 12.1848L12.1851 8.51816C12.5431 8.16018 13.1235 8.16018 13.4815 8.51816Z" fill="url(#paint0_ic_bridge)"/>
+<defs><linearGradient id="paint0_ic_bridge" x1="11" y1="1.83301" x2="11" y2="20.1663" gradientUnits="userSpaceOnUse"><stop stop-color="#E3E4E4" stop-opacity="0.8"/><stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/></linearGradient></defs>
+</svg>`;
+
+const ICON_BURN = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.2278 2.6385C10.7635 1.8732 11.8385 1.59655 12.6781 2.17383C13.5504 2.77365 15.059 3.93295 16.3574 5.5604C17.6552 7.18704 18.7917 9.34429 18.7917 11.9162C18.7917 16.4972 15.3521 20.1662 11 20.1662C6.64787 20.1662 3.20833 16.4972 3.20833 11.9162C3.20833 10.0505 4.00957 7.66662 5.57107 5.7634C6.2552 4.92955 7.43568 4.97928 8.12539 5.64188L10.2278 2.6385ZM11 18.3329C12.3289 18.3329 13.4062 17.1032 13.4062 15.5863C13.4062 13.9584 12.1402 12.7611 11.4448 12.2263C11.1793 12.0221 10.8207 12.0221 10.5552 12.2263C9.85983 12.7611 8.59374 13.9584 8.59374 15.5863C8.59374 17.1032 9.67106 18.3329 11 18.3329Z" fill="url(#paint0_ic_burn)"/>
+<defs><linearGradient id="paint0_ic_burn" x1="11" y1="1.86523" x2="11" y2="20.1662" gradientUnits="userSpaceOnUse"><stop stop-color="#E3E4E4" stop-opacity="0.8"/><stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/></linearGradient></defs>
+</svg>`;
+
+const ICON_DCA = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.3333 9.1666C18.8396 9.1666 19.25 9.577 19.25 10.0833V16.4999C19.25 17.5124 18.4292 18.3333 17.4167 18.3333H5.87956L6.60645 19.0602C6.96439 19.4181 6.96441 19.9984 6.60645 20.3564C6.24847 20.7143 5.66819 20.7143 5.31022 20.3564L3.01855 18.0647C2.66059 17.7067 2.66061 17.1265 3.01855 16.7685L5.31022 14.4768C5.6682 14.1188 6.24846 14.1188 6.60645 14.4768C6.96439 14.8348 6.96441 15.4151 6.60645 15.773L5.87956 16.4999H17.4167V10.0833C17.4167 9.577 17.8271 9.1666 18.3333 9.1666Z" fill="url(#paint0_ic_dca)"/>
+<path d="M11 7.33326C11.5063 7.33326 11.9167 7.74367 11.9167 8.24993V10.0833H13.75L13.844 10.0877C14.3061 10.1348 14.6667 10.5254 14.6667 10.9999C14.6666 11.4744 14.3061 11.8651 13.844 11.9121L13.75 11.9166H11.9167V13.7499C11.9166 14.2562 11.5062 14.6666 11 14.6666C10.4938 14.6666 10.0834 14.2562 10.0833 13.7499V11.9166H8.25C7.74376 11.9166 7.33337 11.5062 7.33333 10.9999C7.33333 10.4937 7.74374 10.0833 8.25 10.0833H10.0833V8.24993C10.0833 7.74367 10.4937 7.33326 11 7.33326Z" fill="url(#paint1_ic_dca)"/>
+<path d="M15.3936 1.64349C15.7515 1.2855 16.3318 1.2855 16.6898 1.64349L18.9814 3.93515C19.3394 4.29314 19.3394 4.87341 18.9814 5.23138L16.6898 7.52304C16.3318 7.88098 15.7515 7.88098 15.3936 7.52304C15.0356 7.16507 15.0356 6.5848 15.3936 6.22682L16.1204 5.49993H4.58333V11.9166C4.5833 12.4228 4.1729 12.8333 3.66667 12.8333C3.16043 12.8333 2.75004 12.4228 2.75 11.9166V5.49993C2.75 4.48741 3.57081 3.6666 4.58333 3.6666H16.1204L15.3936 2.93971C15.0356 2.58174 15.0356 2.00147 15.3936 1.64349Z" fill="url(#paint2_ic_dca)"/>
+<defs>
+<linearGradient id="paint0_ic_dca" x1="11" y1="1.375" x2="11" y2="20.6248" gradientUnits="userSpaceOnUse"><stop stop-color="#E3E4E4" stop-opacity="0.8"/><stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/></linearGradient>
+<linearGradient id="paint1_ic_dca" x1="11" y1="1.375" x2="11" y2="20.6248" gradientUnits="userSpaceOnUse"><stop stop-color="#E3E4E4" stop-opacity="0.8"/><stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/></linearGradient>
+<linearGradient id="paint2_ic_dca" x1="11" y1="1.375" x2="11" y2="20.6248" gradientUnits="userSpaceOnUse"><stop stop-color="#E3E4E4" stop-opacity="0.8"/><stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/></linearGradient>
+</defs>
+</svg>`;
+
+const ICON_LIMIT_ORDER = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.7919 4.58709L9.0555 13.3915C8.52573 15.0961 6.12739 15.1194 5.56547 13.4245L4.48345 10.1607L3.59553 12.281C3.39998 12.748 2.8629 12.968 2.39593 12.7724C1.92896 12.5769 1.70893 12.0398 1.90448 11.5728L2.79316 9.4507C3.44917 7.88415 5.68953 7.97265 6.22324 9.58252L7.30518 12.8461L10.0417 4.04146C10.5977 2.25255 13.1507 2.34755 13.5768 4.16846L16.6763 17.4131L18.3851 12.545C18.5528 12.0673 19.0759 11.816 19.5536 11.9837C20.0313 12.1513 20.2826 12.6745 20.1149 13.1522L18.4055 18.022C17.7965 19.7571 15.3093 19.6178 14.8913 17.8316L11.7919 4.58709Z" fill="url(#paint0_ic_limitord)"/>
+<defs><linearGradient id="paint0_ic_limitord" x1="11" y1="2.75" x2="11" y2="19.2502" gradientUnits="userSpaceOnUse"><stop stop-color="#E3E4E4" stop-opacity="0.8"/><stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/></linearGradient></defs>
+</svg>`;
+
+const ICON_STAKE = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M3.66667 2.74967C3.66667 2.24341 4.07708 1.83301 4.58334 1.83301H17.4167C17.9229 1.83301 18.3333 2.24341 18.3333 2.74967C18.3333 3.25594 17.9229 3.66634 17.4167 3.66634H4.58334C4.07708 3.66634 3.66667 3.25594 3.66667 2.74967ZM9.86571 6.02513C10.4922 5.39866 11.5079 5.39866 12.1343 6.02513L15.544 9.43483C15.902 9.79281 15.902 10.3732 15.544 10.7312C15.186 11.0892 14.6056 11.0892 14.2477 10.7312L11.9167 8.40021V19.2497C11.9167 19.7559 11.5063 20.1663 11 20.1663C10.4938 20.1663 10.0834 19.7559 10.0834 19.2497V8.4002L7.75235 10.7312C7.39437 11.0892 6.81397 11.0892 6.45599 10.7312C6.09801 10.3732 6.09801 9.79281 6.45599 9.43483L9.86571 6.02513Z" fill="url(#paint0_ic_stake)"/>
+<defs><linearGradient id="paint0_ic_stake" x1="11" y1="1.83301" x2="11" y2="20.1663" gradientUnits="userSpaceOnUse"><stop stop-color="#E3E4E4" stop-opacity="0.8"/><stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/></linearGradient></defs>
+</svg>`;
+
+const ICON_WITHDRAW_STAKE = `<svg width="26" height="26" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11 1.83301C11.5063 1.83301 11.9167 2.24341 11.9167 2.74967V13.5991L14.2477 11.2682C14.6056 10.9102 15.186 10.9102 15.544 11.2682C15.902 11.6261 15.902 12.2065 15.544 12.5645L12.1343 15.9742C11.5079 16.6007 10.4922 16.6007 9.86571 15.9742L6.45599 12.5645C6.09801 12.2065 6.09801 11.6261 6.45599 11.2682C6.81397 10.9102 7.39437 10.9102 7.75235 11.2682L10.0834 13.5992V2.74967C10.0834 2.24341 10.4938 1.83301 11 1.83301ZM3.66667 19.2497C3.66667 18.7434 4.07708 18.333 4.58334 18.333H17.4167C17.9229 18.333 18.3333 18.7434 18.3333 19.2497C18.3333 19.7559 17.9229 20.1663 17.4167 20.1663H4.58334C4.07708 20.1663 3.66667 19.7559 3.66667 19.2497Z" fill="url(#paint0_ic_wdstake)"/>
+<defs><linearGradient id="paint0_ic_wdstake" x1="11" y1="1.83301" x2="11" y2="20.1663" gradientUnits="userSpaceOnUse"><stop stop-color="#E3E4E4" stop-opacity="0.8"/><stop offset="1" stop-color="#E3E4E4" stop-opacity="0.5"/></linearGradient></defs>
 </svg>`;
 
 function wrapActionIcon(svg) {
@@ -583,8 +619,30 @@ const data = {
     ],
 
     tokenscreen: [
-      { name:'Sent SOL',     icon:'wallet', actionIcon:'wallet',  mockTitle:'To 7diG...O5at',   mockSub:'Transfer', group:'Send',    states:[{ s:'pending', label:'Sending', amount:'-0.75 SOL' }, { s:'moneyout', label:'Confirmed', amount:'-0.75 SOL' }]},
-      { name:'Received SOL', icon:'wallet', actionIcon:'wallet',  mockTitle:'From 7diG...O5at', mockSub:'Transfer', group:'Receive', states:[{ s:'pending', label:'Pending', amount:'+0.75 SOL' }, { s:'moneyin',  label:'Confirmed', amount:'+0.75 SOL' }]},
+      { name:'Swapped SOL → USDC',   actionIcon:'swap',           mockTitle:'Swapped SOL → USDC',   mockSub:'Trade',    group:'Swap',     states:[{ s:'pending', label:'Swapping',     amount:'-0.75 SOL'  }, { s:'moneyout', label:'Confirmed', amount:'-0.75 SOL'  }]},
+      { name:'Swapped USDC → SOL',   actionIcon:'swap',           mockTitle:'Swapped USDC → SOL',   mockSub:'Trade',    group:'Swap',     states:[{ s:'pending', label:'Swapping',     amount:'+0.75 SOL'  }, { s:'moneyin',  label:'Confirmed', amount:'+0.75 SOL'  }]},
+      { name:'Sent SOL',             actionIcon:'wallet',         mockTitle:'To 7diG...O5at',       mockSub:'Transfer', group:'Transfer', states:[{ s:'pending', label:'Sending',      amount:'-0.75 SOL'  }, { s:'moneyout', label:'Confirmed', amount:'-0.75 SOL'  }]},
+      { name:'Received SOL',         actionIcon:'wallet',         mockTitle:'From 7diG...O5at',     mockSub:'Transfer', group:'Transfer', states:[{ s:'pending', label:'Pending',      amount:'+0.75 SOL'  }, { s:'moneyin',  label:'Confirmed', amount:'+0.75 SOL'  }]},
+      { name:'Bridged SOL → ETH',    actionIcon:'bridge',         mockTitle:'Bridged SOL → ETH',    mockSub:'Trade',    group:'Bridge',   states:[{ s:'pending', label:'Bridging',     amount:'-0.75 SOL'  }, { s:'moneyout', label:'Confirmed', amount:'-0.75 SOL'  }]},
+      { name:'Bridged ETH → SOL',    actionIcon:'bridge',         mockTitle:'Bridged ETH → SOL',    mockSub:'Trade',    group:'Bridge',   states:[{ s:'pending', label:'Bridging',     amount:'+0.75 SOL'  }, { s:'moneyin',  label:'Confirmed', amount:'+0.75 SOL'  }]},
+      { name:'Bridged (Failed)',      actionIcon:'bridge',         mockTitle:'Bridged SOL → ETH',    mockSub:'Trade',    group:'Bridge',   states:[{ s:'failed-tx', label:'Failed',    amount:'-0.75 SOL'  }]},
+      { name:'Burned SOL',           actionIcon:'burn',           mockTitle:'Burned SOL',           mockSub:'Token',    group:'Token',    states:[{ s:'moneyout', label:'Confirmed',   amount:'-0.75 SOL'  }]},
+      { name:'Unwrapped wSOL → SOL', actionIcon:'swap',           mockTitle:'Unwrapped wSOL → SOL', mockSub:'Trade',    group:'Swap',     states:[{ s:'pending', label:'Unwrapping',  amount:'+0.75 SOL'  }, { s:'moneyin',  label:'Confirmed', amount:'+0.75 SOL'  }]},
+      { name:'Staked SOL',           actionIcon:'stake',          mockTitle:'Staked SOL',           mockSub:'Stake',    group:'Stake',    states:[{ s:'pending', label:'Staking',      amount:'-0.75 SOL'  }, { s:'moneyout', label:'Confirmed', amount:'-0.75 SOL'  }]},
+      { name:'Deactivated Stake',    actionIcon:'deactivate',     mockTitle:'Deactivated Stake',    mockSub:'Stake',    group:'Stake',    states:[{ s:'pending', label:'Deactivating', amount:'0.75 SOL'   }, { s:'neutral',  label:'Confirmed', amount:'0.75 SOL'   }]},
+      { name:'Withdrew Stake',       actionIcon:'withdraw-stake', mockTitle:'Withdrew Stake',       mockSub:'Stake',    group:'Stake',    states:[{ s:'pending', label:'Withdrawing',  amount:'+0.75 SOL'  }, { s:'moneyin',  label:'Confirmed', amount:'+0.75 SOL'  }]},
+      { name:'DCA Order Created',    actionIcon:'dca',            mockTitle:'DCA Order Created',    mockSub:'Trade',    group:'DCA',      states:[{ s:'none',    label:'Confirmed',   amount:''           }]},
+      { name:'DCA Buy Executed',     actionIcon:'dca',            mockTitle:'DCA Buy Executed',     mockSub:'Trade',    group:'DCA',      states:[{ s:'moneyin', label:'Confirmed',   amount:'+0.75 SOL'  }]},
+      { name:'DCA Order Cancelled',  actionIcon:'cancel',         mockTitle:'DCA Order Cancelled',  mockSub:'Trade',    group:'DCA',      states:[{ s:'none',    label:'Cancelled',   amount:''           }]},
+      { name:'DCA Buy Failed',       actionIcon:'dca',            mockTitle:'DCA Buy Failed',       mockSub:'Trade',    group:'DCA',      states:[{ s:'failed-tx', label:'Failed',    amount:'0.75 SOL'   }]},
+      { name:'Opened SOL 4x Long',   actionIcon:'open-pos',       mockTitle:'Opened SOL 4x Long',   mockSub:'Trade',    group:'Leverage', states:[{ s:'neutral', label:'Confirmed',   amount:'$145.20'    }]},
+      { name:'Opened SOL 4x Short',  actionIcon:'close-pos',      mockTitle:'Opened SOL 4x Short',  mockSub:'Trade',    group:'Leverage', states:[{ s:'moneyout', label:'Confirmed',  amount:'-$145.20'   }]},
+      { name:'SOL Limit Order',      actionIcon:'limit-order',    mockTitle:'SOL Limit Order',      mockSub:'Trade',    group:'Leverage', states:[{ s:'moneyout', label:'Confirmed',  amount:'-$145.20'   }]},
+      { name:'Cancelled SOL Order',  actionIcon:'cancel',         mockTitle:'Cancelled SOL Order',  mockSub:'Trade',    group:'Leverage', states:[{ s:'none',    label:'Cancelled',   amount:''           }]},
+      { name:'Closed SOL 4x Long',   actionIcon:'close-pos',      mockTitle:'Closed SOL 4x Long',   mockSub:'Trade',    group:'Leverage', states:[{ s:'moneyin', label:'Confirmed',   amount:'+$145.20'   }]},
+      { name:'Liquidated SOL 4x Long',actionIcon:'liquidated',    mockTitle:'Liquidated SOL 4x Long',mockSub:'Trade',   group:'Leverage', states:[{ s:'moneyout', label:'Confirmed',  amount:'-$145.20'   }]},
+      { name:'On-chain Activity',    actionIcon:'generic',        mockTitle:'On-chain Activity',    mockSub:'Activity', group:'Activity', states:[{ s:'none',    label:'Confirmed',   amount:''           }]},
+      { name:'Unknown Transaction',  actionIcon:'generic',        mockTitle:'Unknown Transaction',  mockSub:'Activity', group:'Activity', states:[{ s:'none',    label:'Confirmed',   amount:''           }]},
     ],
 
     predictions: [
@@ -622,15 +680,7 @@ const pages = {
 
   // ── By View ──
   portfolio:   { title:'Portfolio',    subtitle:'Transaction history',   hasToggle:false, cats:['trading','transfers','staking','system'] },
-  asset:       { title:'Token Screen', subtitle:'SOL · Transactions',    hasToggle:false, alwaysActionIcons:true,
-    cats:['trading','tokenscreen','staking'],
-    assetGroups: {
-      trading:    ['Trade','Token'],
-      tokenscreen: null,
-      staking:    null,
-    },
-    solanaOnly: true,
-  },
+  asset:       { title:'Token Screen', subtitle:'SOL · Transactions',    hasToggle:false, alwaysActionIcons:true, cats:['tokenscreen'] },
   cash:        { title:'Cash',         subtitle:'History',               hasToggle:false, cats:['onramps','transfers','cards'] },
   predictions: { title:'Predictions',  subtitle:'Activity',              hasToggle:false, cats:['predictions'] },
   perps:       { title:'Perps',        subtitle:'Activity',              hasToggle:false, cats:['perps'] },
@@ -658,8 +708,14 @@ function buildAvatarHtml(tx, useAction) {
     if (a==='swap')        return wrapActionIcon(ICON_SWAP);
     if (a==='cancel')       return wrapActionIcon(ICON_CANCEL);
     if (a==='wallet')       return wrapIcon(WALLET_SVG);
-    if (a==='deactivate')   return wrapActionIcon(ICON_DEACTIVATE);
-    if (a==='recover')      return wrapActionIcon(ICON_RECOVER);
+    if (a==='deactivate')      return wrapActionIcon(ICON_DEACTIVATE);
+    if (a==='recover')         return wrapActionIcon(ICON_RECOVER);
+    if (a==='bridge')          return wrapActionIcon(ICON_BRIDGE);
+    if (a==='burn')            return wrapActionIcon(ICON_BURN);
+    if (a==='dca')             return wrapActionIcon(ICON_DCA);
+    if (a==='limit-order')     return wrapActionIcon(ICON_LIMIT_ORDER);
+    if (a==='stake')           return wrapActionIcon(ICON_STAKE);
+    if (a==='withdraw-stake')  return wrapActionIcon(ICON_WITHDRAW_STAKE);
     return `<div style="width:40px;height:40px;border-radius:50%;background:#1e1e1e;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="#555"/></svg></div>`;
   }
   if (tx.icon==='phantom')       return wrapImg(PHANTOM_SVG);
