@@ -5,25 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phantom Activity</title>
   <style>
+    :root {
+      --color-bg: #fff;
+      --color-nav-bg: #FAFAFA;
+      --color-border: #ECECEC;
+      --color-nav-logo-text: #111;
+      --color-nav-header: #aaa;
+      --color-nav-item: #000;
+      --color-nav-item-hover-bg: #f5f5f5;
+      --color-nav-item-hover-text: #333;
+      --color-nav-item-active-bg: #F0F0F0;
+      --color-nav-item-active-text: #111;
+      --color-panel-bg: #FFF;
+      --color-panel-title: #000;
+      --color-logic-section-header: #aaa;
+      --color-logic-rule-bg: #fff;
+      --color-logic-rule-shadow: rgba(0,0,0,0.08);
+      --color-logic-rule-title: #000;
+      --color-logic-rule-desc: #707070;
+      --color-pill-bg: #e8e8e8;
+      --color-pill-text: #666;
+      --color-pill-hover-bg: #e0e0e0;
+      --color-pill-hover-text: #333;
+      --color-pill-active-bg: #111;
+      --color-pill-active-text: #fff;
+      --color-toggle-bar-text: #888;
+      --color-toggle-bg: #ccc;
+      --color-theme-toggle-text: #888;
+    }
+    [data-theme="dark"] {
+      --color-bg: #111;
+      --color-nav-bg: #161616;
+      --color-border: #2A2A2A;
+      --color-nav-logo-text: #fff;
+      --color-nav-header: #555;
+      --color-nav-item: #fff;
+      --color-nav-item-hover-bg: rgba(255,255,255,0.06);
+      --color-nav-item-hover-text: #fff;
+      --color-nav-item-active-bg: rgba(255,255,255,0.10);
+      --color-nav-item-active-text: #fff;
+      --color-panel-bg: #161616;
+      --color-panel-title: #E3E4E4;
+      --color-logic-section-header: #555;
+      --color-logic-rule-bg: #1C1C1C;
+      --color-logic-rule-shadow: rgba(255,255,255,0.06);
+      --color-logic-rule-title: #E3E4E4;
+      --color-logic-rule-desc: #707070;
+      --color-pill-bg: rgba(255,255,255,0.08);
+      --color-pill-text: rgba(255,255,255,0.45);
+      --color-pill-hover-bg: rgba(255,255,255,0.12);
+      --color-pill-hover-text: rgba(255,255,255,0.65);
+      --color-pill-active-bg: rgba(255,255,255,0.9);
+      --color-pill-active-text: #111;
+      --color-toggle-bar-text: #666;
+      --color-toggle-bg: #444;
+      --color-theme-toggle-text: #555;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --color-bg: #111;
+        --color-nav-bg: #161616;
+        --color-border: #2A2A2A;
+        --color-nav-logo-text: #fff;
+        --color-nav-header: #555;
+        --color-nav-item: #fff;
+        --color-nav-item-hover-bg: rgba(255,255,255,0.06);
+        --color-nav-item-hover-text: #fff;
+        --color-nav-item-active-bg: rgba(255,255,255,0.10);
+        --color-nav-item-active-text: #fff;
+        --color-panel-bg: #161616;
+        --color-panel-title: #E3E4E4;
+        --color-logic-section-header: #555;
+        --color-logic-rule-bg: #1C1C1C;
+        --color-logic-rule-shadow: rgba(255,255,255,0.06);
+        --color-logic-rule-title: #E3E4E4;
+        --color-logic-rule-desc: #707070;
+        --color-pill-bg: rgba(255,255,255,0.08);
+        --color-pill-text: rgba(255,255,255,0.45);
+        --color-pill-hover-bg: rgba(255,255,255,0.12);
+        --color-pill-hover-text: rgba(255,255,255,0.65);
+        --color-pill-active-bg: rgba(255,255,255,0.9);
+        --color-pill-active-text: #111;
+        --color-toggle-bar-text: #666;
+        --color-toggle-bg: #444;
+        --color-theme-toggle-text: #555;
+      }
+    }
+    .no-transitions *, .no-transitions *::before, .no-transitions *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    body { background: #fff; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', sans-serif; min-height: 100vh; display: flex; }
-    .left-nav { width: 260px; flex-shrink: 0; background: #FAFAFA; border-right: 1px solid #ECECEC; padding: 32px 20px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 32px; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10; }
+    body { background: var(--color-bg); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', sans-serif; min-height: 100vh; display: flex; }
+    .left-nav { width: 260px; flex-shrink: 0; background: var(--color-nav-bg); border-right: 1px solid var(--color-border); padding: 32px 20px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 32px; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10; }
     .nav-logo { display: flex; align-items: center; gap: 9px; width: 100%; }
-    .nav-logo-text { font-size: 14px; font-weight: 600; color: #111; letter-spacing: -0.1px; }
+    .nav-logo-text { font-size: 14px; font-weight: 600; color: var(--color-nav-logo-text); letter-spacing: -0.1px; }
     .nav-section { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; align-self: stretch; width: 100%; }
     .nav-items { display: flex; flex-direction: column; align-items: flex-start; gap: 0; align-self: stretch; width: 100%; }
-    .nav-header { color: #aaa; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 8px 6px; }
-    .nav-item { display: flex; align-items: center; padding: 8px 10px; cursor: pointer; border-radius: 8px; width: 100%; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; color: #000; transition: background 0.12s ease, color 0.12s ease; min-height: 34px; outline: none; touch-action: manipulation; position: relative; }
+    .nav-header { color: var(--color-nav-header); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 8px 6px; }
+    .nav-item { display: flex; align-items: center; padding: 8px 10px; cursor: pointer; border-radius: 8px; width: 100%; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; color: var(--color-nav-item); transition: background 0.12s ease, color 0.12s ease; min-height: 34px; outline: none; touch-action: manipulation; position: relative; }
     .nav-item::before { content: ''; position: absolute; inset: -5px 0; }
-    @media (hover: hover) { .nav-item:hover { background: #f5f5f5; color: #333; } }
+    @media (hover: hover) { .nav-item:hover { background: var(--color-nav-item-hover-bg); color: var(--color-nav-item-hover-text); } }
     .nav-item:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
-    .nav-item.active { background: #F0F0F0; color: #111; font-weight: 400; }
+    .nav-item.active { background: var(--color-nav-item-active-bg); color: var(--color-nav-item-active-text); font-weight: 400; }
     .nav-dot { display: none; }
     .nav-divider { display: none; }
-    .right-content { flex: 1; margin-left: 260px; margin-right: 420px; height: 100vh; overflow-y: auto; overflow-x: hidden; display: flex; align-items: flex-start; justify-content: center; padding: 40px 0; }
+    .nav-theme-segment { position: relative; display: inline-flex; padding: 4px; align-items: center; gap: 4px; border-radius: 8px; background: #F2F2F2; margin-top: auto; flex-shrink: 0; align-self: flex-start; }
+    [data-theme="dark"] .nav-theme-segment { background: rgba(255,255,255,0.08); }
+    .theme-slider { position: absolute; top: 4px; left: 4px; width: 32px; height: 32px; border-radius: 6px; background: #fff; transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none; }
+    [data-theme="dark"] .nav-theme-segment .theme-slider { background: rgba(255,255,255,0.14); transform: translateX(36px); }
+    .theme-seg-btn { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; cursor: pointer; outline: none; touch-action: manipulation; color: #B3B3B3; transition: color 0.22s ease; }
+    .theme-seg-btn:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
+    .theme-seg-btn.active { color: #111; }
+    [data-theme="dark"] .theme-seg-btn { color: rgba(255,255,255,0.3); }
+    [data-theme="dark"] .theme-seg-btn.active { color: #E3E4E4; }
+    /* Moon glow — pulses through purple → pink → blue */
+    [data-theme="dark"] #theme-btn-dark svg { animation: moonGlow 4s ease-in-out infinite; }
+    @keyframes moonGlow {
+      0%,100% { filter: drop-shadow(0 0 3px #AB9FF2) drop-shadow(0 0 8px rgba(171,159,242,0.7)); }
+      30%      { filter: drop-shadow(0 0 5px #FF6BBA) drop-shadow(0 0 12px rgba(255,107,186,0.6)) drop-shadow(0 0 22px rgba(255,107,186,0.25)); }
+      65%      { filter: drop-shadow(0 0 5px #6BB5FF) drop-shadow(0 0 12px rgba(107,181,255,0.6)) drop-shadow(0 0 22px rgba(107,181,255,0.25)); }
+    }
+    .right-content { flex: 1; margin-left: 260px; margin-right: 420px; height: 100vh; overflow-y: auto; overflow-x: hidden; display: flex; align-items: flex-start; justify-content: center; padding: 40px 0; background: var(--color-bg); }
     .page-chrome { display: flex; align-items: flex-start; justify-content: center; }
-    .page-chrome-right { width: 420px; flex-shrink: 0; background: #FFF; border-left: 1px solid #ECECEC; display: flex; flex-direction: column; height: 100vh; overflow: hidden; position: fixed; top: 0; right: 0; }
-    .right-panel-header { padding: 32px 20px 20px 20px; display: flex; flex-direction: column; gap: 24px; flex-shrink: 0; background: #FFF; }
+    .page-chrome-right { width: 420px; flex-shrink: 0; background: var(--color-panel-bg); border-left: 1px solid var(--color-border); display: flex; flex-direction: column; height: 100vh; overflow: hidden; position: fixed; top: 0; right: 0; }
+    .right-panel-header { padding: 32px 20px 20px 20px; display: flex; flex-direction: column; gap: 24px; flex-shrink: 0; background: var(--color-panel-bg); }
     .right-panel-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 0 20px 24px 20px; }
     .right-panel-scroll::-webkit-scrollbar { display: none; }
     .phone { background: #000; border-radius: 44px; overflow: hidden; width: 390px; flex-shrink: 0; height: calc(100vh - 80px); display: flex; flex-direction: column; }
@@ -33,13 +136,13 @@
     .page-title { font-size: 24px; font-weight: 600; color: #f0f0f0; letter-spacing: -0.3px; line-height: 1.2; }
     .page-subtitle { font-size: 13px; color: #555; margin-top: 4px; }
     .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; align-self: stretch; }
-    .pill { padding: 5px 13px; border-radius: 9999px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: background 0.12s ease, color 0.12s ease; white-space: nowrap; display: flex; align-items: center; gap: 6px; min-height: 28px; outline: none; letter-spacing: -0.1px; background: #e8e8e8; color: #666; touch-action: manipulation; position: relative; }
+    .pill { padding: 5px 13px; border-radius: 9999px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: background 0.12s ease, color 0.12s ease; white-space: nowrap; display: flex; align-items: center; gap: 6px; min-height: 28px; outline: none; letter-spacing: -0.1px; background: var(--color-pill-bg); color: var(--color-pill-text); touch-action: manipulation; position: relative; }
     .pill::before { content: ''; position: absolute; inset: -8px 0; }
     .pill:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
-    @media (hover: hover) { .pill:hover { background: #e0e0e0; color: #333; } }
-    .pill.active { background: #111; color: #fff; font-weight: 500; }
-    .toggle-bar { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; }
-    .toggle-switch { width: 32px; height: 18px; border-radius: 9px; background: #ccc; cursor: pointer; position: relative; transition: background 0.15s ease; flex-shrink: 0; outline: none; touch-action: manipulation; }
+    @media (hover: hover) { .pill:hover { background: var(--color-pill-hover-bg); color: var(--color-pill-hover-text); } }
+    .pill.active { background: var(--color-pill-active-bg); color: var(--color-pill-active-text); font-weight: 500; }
+    .toggle-bar { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--color-toggle-bar-text); }
+    .toggle-switch { width: 32px; height: 18px; border-radius: 9px; background: var(--color-toggle-bg); cursor: pointer; position: relative; transition: background 0.15s ease; flex-shrink: 0; outline: none; touch-action: manipulation; }
     .toggle-switch:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
     .toggle-knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: left 0.15s ease; }
     .toggle-switch.on { background: #AB9FF2; } .toggle-switch.on .toggle-knob { left: 16px; }
@@ -56,13 +159,13 @@
     .empty { padding: 40px 20px; text-align: center; color: #444; font-size: 14px; }
 
     /* ── RIGHT PANEL — always-visible logic ── */
-    .right-panel-title { align-self: stretch; color: #000; font-family: "SF Pro Display", -apple-system, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; line-height: 24px; letter-spacing: 0; text-wrap: balance; }
+    .right-panel-title { align-self: stretch; color: var(--color-panel-title); font-family: "SF Pro Display", -apple-system, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; line-height: 24px; letter-spacing: 0; text-wrap: balance; }
     .right-logic { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; align-self: stretch; }
     .logic-section { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; align-self: stretch; }
-    .logic-section-title { align-self: stretch; color: #aaa; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
-    .logic-rule { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; background: #fff; border-radius: 10px; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.08); width: 100%; }
-    .logic-rule-title { align-self: stretch; color: #000; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 500; line-height: 18px; letter-spacing: 0; }
-    .logic-rule-desc { align-self: stretch; color: #707070; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; }
+    .logic-section-title { align-self: stretch; color: var(--color-logic-section-header); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .logic-rule { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; background: var(--color-logic-rule-bg); border-radius: 10px; box-shadow: 0 0 0 0.5px var(--color-logic-rule-shadow); width: 100%; }
+    .logic-rule-title { align-self: stretch; color: var(--color-logic-rule-title); font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 500; line-height: 18px; letter-spacing: 0; }
+    .logic-rule-desc { align-self: stretch; color: var(--color-logic-rule-desc); font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; }
     .page-fade { animation: pageFadeIn 150ms ease-out; }
     @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) {
@@ -72,6 +175,14 @@
   </style>
 </head>
 <body>
+<script>
+  (function(){
+    var saved = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = saved || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
 <nav class="left-nav">
   <div class="nav-logo">
     <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="pointer-events:none;user-select:none;flex-shrink:0;"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.0754 0.00610554C22.8207 -0.152759 24.8485 2.81053 24.9904 6.33078C25.1934 10.9846 22.1309 16.5934 18.8453 16.713C17.8115 16.7532 17.2226 16.2159 17.2226 15.2608V14.8431H17.1768C17.1768 14.8431 17.1006 15.002 16.9386 15.2412C15.8638 16.8121 13.978 18.2839 12.0913 18.3437C10.5705 18.4035 9.88067 17.6074 9.88067 15.858V15.2618H9.83493C9.83493 15.2618 9.79967 15.3412 9.59671 15.6599C9.39374 15.9785 6.67614 19.8763 2.90465 19.9959C1.36385 20.0557 -0.0969161 19.4791 0.0050418 16.814C0.330926 10.1884 9.74059 0.284586 18.0754 0.00610554ZM16.4727 8.34742C17.255 8.34742 17.7419 7.58861 17.7419 6.65318C17.7419 5.71775 17.255 4.95894 16.4727 4.95894C15.6904 4.95894 15.2034 5.71775 15.2034 6.65318C15.2034 7.58861 15.6904 8.34742 16.4727 8.34742ZM20.4424 8.34742C21.2247 8.34742 21.7116 7.58861 21.7116 6.65318C21.7116 5.71775 21.2247 4.95894 20.4424 4.95894C19.66 4.95894 19.1731 5.71775 19.1731 6.65318C19.1731 7.58861 19.66 8.34742 20.4424 8.34742Z" fill="#AB9FF2"/></svg>
@@ -96,6 +207,15 @@
       <div class="nav-item" onclick="selectPage('cash')" id="nav-cash" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('cash')}">Cash</div>
       <div class="nav-item" onclick="selectPage('predictions')" id="nav-predictions" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('predictions')}">Predictions</div>
       <div class="nav-item" onclick="selectPage('perps')" id="nav-perps" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('perps')}">Perps</div>
+    </div>
+  </div>
+  <div class="nav-theme-segment" role="group" aria-label="Color theme">
+    <div class="theme-slider" id="theme-slider"></div>
+    <div class="theme-seg-btn" id="theme-btn-light" onclick="setTheme('light')" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')setTheme('light')" aria-label="Light mode" role="button">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_seg_sun)"><path d="M8.66663 1.33333C8.66663 0.965145 8.36815 0.666668 7.99996 0.666668C7.63177 0.666668 7.33329 0.965145 7.33329 1.33333V2C7.33329 2.36819 7.63177 2.66667 7.99996 2.66667C8.36815 2.66667 8.66663 2.36819 8.66663 2V1.33333Z" fill="currentColor"/><path d="M8.66663 14C8.66663 13.6318 8.36815 13.3333 7.99996 13.3333C7.63177 13.3333 7.33329 13.6318 7.33329 14V14.6667C7.33329 15.0349 7.63177 15.3333 7.99996 15.3333C8.36815 15.3333 8.66663 15.0349 8.66663 14.6667V14Z" fill="currentColor"/><path d="M13.1846 2.8153C13.4449 3.07565 13.4449 3.49776 13.1846 3.75811L12.7113 4.23144C12.4509 4.49179 12.0288 4.49179 11.7685 4.23144C11.5081 3.97109 11.5081 3.54898 11.7685 3.28863L12.2418 2.8153C12.5021 2.55495 12.9242 2.55495 13.1846 2.8153Z" fill="currentColor"/><path d="M4.23147 12.7114C4.49182 12.451 4.49182 12.0289 4.23147 11.7686C3.97112 11.5082 3.54901 11.5082 3.28866 11.7686L2.81533 12.2419C2.55498 12.5023 2.55498 12.9244 2.81533 13.1847C3.07568 13.4451 3.49779 13.4451 3.75813 13.1847L4.23147 12.7114Z" fill="currentColor"/><path d="M13.3333 8.00001C13.3333 7.63182 13.6318 7.33335 14 7.33335H14.6666C15.0348 7.33335 15.3333 7.63182 15.3333 8.00001C15.3333 8.3682 15.0348 8.66668 14.6666 8.66668H14C13.6318 8.66668 13.3333 8.3682 13.3333 8.00001Z" fill="currentColor"/><path d="M1.33329 7.33335C0.965103 7.33335 0.666626 7.63182 0.666626 8.00001C0.666626 8.3682 0.965103 8.66668 1.33329 8.66668H1.99996C2.36815 8.66668 2.66663 8.3682 2.66663 8.00001C2.66663 7.63182 2.36815 7.33335 1.99996 7.33335H1.33329Z" fill="currentColor"/><path d="M11.7685 11.7686C12.0288 11.5082 12.4509 11.5082 12.7113 11.7686L13.1846 12.2419C13.4449 12.5023 13.4449 12.9244 13.1846 13.1847C12.9242 13.4451 12.5021 13.4451 12.2418 13.1847L11.7685 12.7114C11.5081 12.451 11.5081 12.0289 11.7685 11.7686Z" fill="currentColor"/><path d="M3.75813 2.8153C3.49779 2.55495 3.07568 2.55495 2.81533 2.8153C2.55498 3.07565 2.55498 3.49776 2.81533 3.75811L3.28866 4.23144C3.54901 4.49179 3.97112 4.49179 4.23147 4.23144C4.49182 3.97109 4.49182 3.54898 4.23147 3.28863L3.75813 2.8153Z" fill="currentColor"/><path d="M5.17153 5.17157C6.73363 3.60948 9.26629 3.60948 10.8284 5.17157C12.3905 6.73367 12.3905 9.26633 10.8284 10.8284C9.26629 12.3905 6.73363 12.3905 5.17153 10.8284C3.60944 9.26633 3.60944 6.73367 5.17153 5.17157Z" fill="currentColor"/></g><defs><clipPath id="clip0_seg_sun"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>
+    </div>
+    <div class="theme-seg-btn" id="theme-btn-dark" onclick="setTheme('dark')" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')setTheme('dark')" aria-label="Dark mode" role="button">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.03704 2.39981C8.18337 2.18748 8.19414 1.90981 8.06468 1.6868C7.93523 1.46379 7.68877 1.33543 7.43183 1.35721C4.01687 1.64656 1.33594 4.50914 1.33594 7.99859C1.33594 11.6798 4.32015 14.664 8.00136 14.664C11.4909 14.664 14.3535 11.983 14.6428 8.5679C14.6645 8.31096 14.5362 8.06451 14.3131 7.93506C14.0901 7.80561 13.8125 7.81639 13.6001 7.96272C12.9561 8.40665 12.176 8.66651 11.3333 8.66651C9.12419 8.66651 7.33333 6.87565 7.33333 4.66651C7.33333 3.82385 7.59316 3.04388 8.03704 2.39981Z" fill="currentColor"/></svg>
     </div>
   </div>
 </nav>
@@ -739,6 +859,52 @@ function buildAvatarHtml(tx, useAction) {
   return wrapIcon(WALLET_SVG);
 }
 
+function spawnStars(btn) {
+  const rect = btn.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const palette = ['#AB9FF2','#C4B5FD','#FF6BBA','#FF8DD1','#6BB5FF','#93C5FD','#ffffff'];
+  const count = 18;
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement('div');
+    const angle = (i / count) * Math.PI * 2 + (Math.random() - 0.5) * 0.8;
+    const dist = 24 + Math.random() * 44;
+    const size = 1.5 + Math.random() * 3;
+    const color = palette[Math.floor(Math.random() * palette.length)];
+    const dur = 700 + Math.random() * 600;
+    const delay = Math.random() * 180;
+    dot.style.cssText = `position:fixed;width:${size}px;height:${size}px;border-radius:50%;background:${color};box-shadow:0 0 ${size*2}px ${color};left:${cx - size/2}px;top:${cy - size/2}px;pointer-events:none;z-index:99999;opacity:0;transition:transform ${dur}ms cubic-bezier(0,0.8,0.4,1) ${delay}ms,opacity 180ms ease ${delay}ms;`;
+    document.body.appendChild(dot);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      dot.style.opacity = '1';
+      dot.style.transform = `translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`;
+      setTimeout(() => {
+        dot.style.transition = `transform ${dur}ms cubic-bezier(0,0.8,0.4,1) ${delay}ms,opacity ${dur*0.5}ms ease 0ms`;
+        dot.style.opacity = '0';
+      }, delay + 120);
+    }));
+    setTimeout(() => dot.remove(), delay + dur + 100);
+  }
+}
+
+function setTheme(mode) {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', mode);
+  localStorage.setItem('theme', mode);
+  const btnLight = document.getElementById('theme-btn-light');
+  const btnDark = document.getElementById('theme-btn-dark');
+  if (btnLight) btnLight.classList.toggle('active', mode === 'light');
+  if (btnDark) btnDark.classList.toggle('active', mode === 'dark');
+  if (mode === 'dark' && btnDark) spawnStars(btnDark);
+}
+function syncThemeButtons() {
+  const mode = document.documentElement.getAttribute('data-theme') || 'light';
+  const btnLight = document.getElementById('theme-btn-light');
+  const btnDark = document.getElementById('theme-btn-dark');
+  if (btnLight) btnLight.classList.toggle('active', mode === 'light');
+  if (btnDark) btnDark.classList.toggle('active', mode === 'dark');
+}
+
 function selectPage(id) {
   activePage=id; legendFilter='all'; assetScreen=false;
   document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
@@ -1062,6 +1228,7 @@ const pageLogic = {
 };
 
 render();
+syncThemeButtons();
 </script>
 </body>
 </html>
