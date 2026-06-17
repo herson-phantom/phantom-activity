@@ -13,10 +13,11 @@
     .nav-section { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; align-self: stretch; width: 100%; }
     .nav-items { display: flex; flex-direction: column; align-items: flex-start; gap: 0; align-self: stretch; width: 100%; }
     .nav-header { color: #aaa; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 8px 6px; }
-    .nav-item { display: flex; align-items: center; padding: 8px 10px; cursor: pointer; border-radius: 8px; width: 100%; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; color: #000; transition: background 0.12s, color 0.12s; min-height: 34px; outline: none; }
+    .nav-item { display: flex; align-items: center; padding: 8px 10px; cursor: pointer; border-radius: 8px; width: 100%; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; color: #999; transition: background 0.12s ease, color 0.12s ease; min-height: 34px; outline: none; touch-action: manipulation; position: relative; }
+    .nav-item::before { content: ''; position: absolute; inset: -5px 0; }
     @media (hover: hover) { .nav-item:hover { background: #f5f5f5; color: #333; } }
     .nav-item:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
-    .nav-item.active { background: #F0F0F0; color: #111; font-weight: 500; }
+    .nav-item.active { background: #F0F0F0; color: #111; font-weight: 400; }
     .nav-dot { display: none; }
     .nav-divider { display: none; }
     .right-content { flex: 1; margin-left: 260px; margin-right: 420px; height: 100vh; overflow-y: auto; overflow-x: hidden; display: flex; align-items: flex-start; justify-content: center; padding: 40px 0; }
@@ -30,19 +31,20 @@
     .page-title { font-size: 24px; font-weight: 600; color: #f0f0f0; letter-spacing: -0.3px; line-height: 1.2; }
     .page-subtitle { font-size: 13px; color: #555; margin-top: 4px; }
     .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; align-self: stretch; }
-    .pill { padding: 5px 13px; border-radius: 9999px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: background 0.12s, color 0.12s; white-space: nowrap; display: flex; align-items: center; gap: 6px; min-height: 28px; outline: none; letter-spacing: -0.1px; background: #e8e8e8; color: #666; }
+    .pill { padding: 5px 13px; border-radius: 9999px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: background 0.12s ease, color 0.12s ease; white-space: nowrap; display: flex; align-items: center; gap: 6px; min-height: 28px; outline: none; letter-spacing: -0.1px; background: #e8e8e8; color: #666; touch-action: manipulation; position: relative; }
+    .pill::before { content: ''; position: absolute; inset: -8px 0; }
     .pill:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
     @media (hover: hover) { .pill:hover { background: #e0e0e0; color: #333; } }
-    .pill.active { background: #111; color: #fff; font-weight: 600; }
+    .pill.active { background: #111; color: #fff; font-weight: 500; }
     .toggle-bar { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; margin-bottom: 24px; }
-    .toggle-switch { width: 32px; height: 18px; border-radius: 9px; background: #ccc; cursor: pointer; position: relative; transition: background 0.15s; flex-shrink: 0; outline: none; }
+    .toggle-switch { width: 32px; height: 18px; border-radius: 9px; background: #ccc; cursor: pointer; position: relative; transition: background 0.15s ease; flex-shrink: 0; outline: none; touch-action: manipulation; }
     .toggle-switch:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
-    .toggle-knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: left 0.15s; }
+    .toggle-knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: left 0.15s ease; }
     .toggle-switch.on { background: #AB9FF2; } .toggle-switch.on .toggle-knob { left: 16px; }
     .section-head { display: flex; align-items: center; gap: 10px; padding: 20px 20px 8px; }
     .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #444; white-space: nowrap; }
     .section-line { flex: 1; height: 0.5px; background: #242424; }
-    .row { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-bottom: 0.5px solid #1a1a1a; min-height: 44px; transition: background 0.1s; }
+    .row { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-bottom: 0.5px solid #1a1a1a; min-height: 44px; transition: background 0.1s ease; }
     @media (hover: hover) { .row:hover { background: rgba(255,255,255,0.02); } }
     .row:last-child { border-bottom: none; }
     .row-info { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; flex: 1 1 0; min-width: 0; }
@@ -52,15 +54,18 @@
     .empty { padding: 40px 20px; text-align: center; color: #444; font-size: 14px; }
 
     /* ── RIGHT PANEL — always-visible logic ── */
-    .right-panel-title { align-self: stretch; color: #000; font-family: "SF Pro Display", -apple-system, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; line-height: 24px; letter-spacing: 0; }
-    .right-logic { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; align-self: stretch; }
+    .right-panel-title { align-self: stretch; color: #000; font-family: "SF Pro Display", -apple-system, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; line-height: 24px; letter-spacing: 0; text-wrap: balance; }
+    .right-logic { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; align-self: stretch; margin-top: 16px; }
     .logic-section { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; align-self: stretch; }
     .logic-section-title { align-self: stretch; color: #aaa; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
     .logic-rule { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; background: #fff; border-radius: 10px; border: 0.5px solid #e8e8e8; width: 100%; }
     .logic-rule-title { align-self: stretch; color: #000; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 500; line-height: 18px; letter-spacing: 0; }
     .logic-rule-desc { align-self: stretch; color: #707070; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; }
+    .page-fade { animation: pageFadeIn 150ms ease-out; }
+    @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      .page-fade { animation: none; }
+      *, *::before, *::after { transition-duration: 0.01ms; animation-duration: 0.01ms; }
     }
   </style>
 </head>
@@ -74,21 +79,21 @@
     <div class="nav-header">Transaction by Categories</div>
     <div class="nav-items">
       <div class="nav-item active" onclick="selectPage('cat-trading')" id="nav-cat-trading" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('cat-trading')}">Trading</div>
-      <div class="nav-item" onclick="selectPage('cat-onramps')" id="nav-cat-onramps">On-Ramps</div>
-      <div class="nav-item" onclick="selectPage('cat-transfers')" id="nav-cat-transfers">Transfers</div>
-      <div class="nav-item" onclick="selectPage('cat-cards')" id="nav-cat-cards">Cards</div>
-      <div class="nav-item" onclick="selectPage('cat-staking')" id="nav-cat-staking">Staking</div>
-      <div class="nav-item" onclick="selectPage('cat-activity')" id="nav-cat-activity">Activity</div>
+      <div class="nav-item" onclick="selectPage('cat-onramps')" id="nav-cat-onramps" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('cat-onramps')}">On-Ramps</div>
+      <div class="nav-item" onclick="selectPage('cat-transfers')" id="nav-cat-transfers" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('cat-transfers')}">Transfers</div>
+      <div class="nav-item" onclick="selectPage('cat-cards')" id="nav-cat-cards" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('cat-cards')}">Cards</div>
+      <div class="nav-item" onclick="selectPage('cat-staking')" id="nav-cat-staking" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('cat-staking')}">Staking</div>
+      <div class="nav-item" onclick="selectPage('cat-activity')" id="nav-cat-activity" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('cat-activity')}">Activity</div>
     </div>
   </div>
   <div class="nav-section">
     <div class="nav-header">Transaction by View</div>
     <div class="nav-items">
-      <div class="nav-item" onclick="selectPage('portfolio')" id="nav-portfolio">Portfolio</div>
-      <div class="nav-item" onclick="selectPage('asset')" id="nav-asset">Token Screen</div>
-      <div class="nav-item" onclick="selectPage('cash')" id="nav-cash">Cash</div>
-      <div class="nav-item" onclick="selectPage('predictions')" id="nav-predictions">Predictions</div>
-      <div class="nav-item" onclick="selectPage('perps')" id="nav-perps">Perps</div>
+      <div class="nav-item" onclick="selectPage('portfolio')" id="nav-portfolio" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('portfolio')}">Portfolio</div>
+      <div class="nav-item" onclick="selectPage('asset')" id="nav-asset" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('asset')}">Token Screen</div>
+      <div class="nav-item" onclick="selectPage('cash')" id="nav-cash" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('cash')}">Cash</div>
+      <div class="nav-item" onclick="selectPage('predictions')" id="nav-predictions" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('predictions')}">Predictions</div>
+      <div class="nav-item" onclick="selectPage('perps')" id="nav-perps" tabindex="0" onkeydown="if(event.key==='Enter'){selectPage('perps')}">Perps</div>
     </div>
   </div>
 </nav>
@@ -787,8 +792,15 @@ function render() {
     ${toggleHtml}
     <div class="right-logic">${logicHtml}</div>
   `;
+  rightPanel.classList.remove('page-fade');
+  void rightPanel.offsetWidth;
+  rightPanel.classList.add('page-fade');
   // Render transactions inside phone
-  phone.innerHTML = `<div class="phone-scroll-body">${rowsHtml}</div>`;
+  const scrollBody = document.createElement('div');
+  scrollBody.className = 'phone-scroll-body page-fade';
+  scrollBody.innerHTML = rowsHtml;
+  phone.innerHTML = '';
+  phone.appendChild(scrollBody);
 }
 
 /* ── PAGE LOGIC DEFINITIONS ── */
