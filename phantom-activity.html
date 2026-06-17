@@ -22,8 +22,10 @@
     .nav-divider { display: none; }
     .right-content { flex: 1; margin-left: 260px; margin-right: 420px; height: 100vh; overflow-y: auto; overflow-x: hidden; display: flex; align-items: flex-start; justify-content: center; padding: 40px 0; }
     .page-chrome { display: flex; align-items: flex-start; justify-content: center; }
-    .page-chrome-right { width: 420px; flex-shrink: 0; background: #FFF; border-left: 1px solid #ECECEC; padding: 32px 20px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; height: 100vh; overflow-x: hidden; overflow-y: auto; position: fixed; top: 0; right: 0; }
-    .page-chrome-right::-webkit-scrollbar { display: none; }
+    .page-chrome-right { width: 420px; flex-shrink: 0; background: #FFF; border-left: 1px solid #ECECEC; display: flex; flex-direction: column; height: 100vh; overflow: hidden; position: fixed; top: 0; right: 0; }
+    .right-panel-header { padding: 32px 20px 20px 20px; display: flex; flex-direction: column; gap: 24px; flex-shrink: 0; background: #FFF; }
+    .right-panel-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 0 20px 24px 20px; }
+    .right-panel-scroll::-webkit-scrollbar { display: none; }
     .phone { background: #000; border-radius: 44px; overflow: hidden; width: 390px; flex-shrink: 0; height: calc(100vh - 80px); display: flex; flex-direction: column; }
     .phone-scroll-body { flex: 1; overflow-y: auto; }
     .phone-scroll-body::-webkit-scrollbar { display: none; }
@@ -55,7 +57,7 @@
 
     /* ── RIGHT PANEL — always-visible logic ── */
     .right-panel-title { align-self: stretch; color: #000; font-family: "SF Pro Display", -apple-system, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; line-height: 24px; letter-spacing: 0; text-wrap: balance; }
-    .right-logic { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; align-self: stretch; margin-top: 16px; }
+    .right-logic { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; align-self: stretch; }
     .logic-section { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; align-self: stretch; }
     .logic-section-title { align-self: stretch; color: #aaa; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
     .logic-rule { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; background: #fff; border-radius: 10px; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.08); width: 100%; }
@@ -843,10 +845,14 @@ function render() {
     </div>`).join('') : '';
   const rightPanel = document.getElementById('pageRightPanel');
   rightPanel.innerHTML = `
-    <div class="right-panel-title">${page.title}</div>
-    <div class="filter-bar">${pillsHtml}</div>
-    ${toggleHtml}
-    <div class="right-logic">${logicHtml}</div>
+    <div class="right-panel-header">
+      <div class="right-panel-title">${page.title}</div>
+      <div class="filter-bar">${pillsHtml}</div>
+      ${toggleHtml}
+    </div>
+    <div class="right-panel-scroll">
+      <div class="right-logic">${logicHtml}</div>
+    </div>
   `;
   rightPanel.classList.remove('page-fade');
   void rightPanel.offsetWidth;
