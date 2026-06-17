@@ -13,7 +13,7 @@
     .nav-section { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; align-self: stretch; width: 100%; }
     .nav-items { display: flex; flex-direction: column; align-items: flex-start; gap: 0; align-self: stretch; width: 100%; }
     .nav-header { color: #aaa; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 8px 6px; }
-    .nav-item { display: flex; align-items: center; padding: 8px 10px; cursor: pointer; border-radius: 8px; width: 100%; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; color: #999; transition: background 0.12s ease, color 0.12s ease; min-height: 34px; outline: none; touch-action: manipulation; position: relative; }
+    .nav-item { display: flex; align-items: center; padding: 8px 10px; cursor: pointer; border-radius: 8px; width: 100%; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; color: #000; transition: background 0.12s ease, color 0.12s ease; min-height: 34px; outline: none; touch-action: manipulation; position: relative; }
     .nav-item::before { content: ''; position: absolute; inset: -5px 0; }
     @media (hover: hover) { .nav-item:hover { background: #f5f5f5; color: #333; } }
     .nav-item:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
@@ -22,7 +22,7 @@
     .nav-divider { display: none; }
     .right-content { flex: 1; margin-left: 260px; margin-right: 420px; height: 100vh; overflow-y: auto; overflow-x: hidden; display: flex; align-items: flex-start; justify-content: center; padding: 40px 0; }
     .page-chrome { display: flex; align-items: flex-start; justify-content: center; }
-    .page-chrome-right { width: 420px; flex-shrink: 0; background: #FFF; border-left: 1px solid #F6F6F6; padding: 32px 20px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; height: 100vh; overflow-x: hidden; overflow-y: auto; position: fixed; top: 0; right: 0; }
+    .page-chrome-right { width: 420px; flex-shrink: 0; background: #FFF; border-left: 1px solid #ECECEC; padding: 32px 20px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px; height: 100vh; overflow-x: hidden; overflow-y: auto; position: fixed; top: 0; right: 0; }
     .page-chrome-right::-webkit-scrollbar { display: none; }
     .phone { background: #000; border-radius: 44px; overflow: hidden; width: 390px; flex-shrink: 0; height: calc(100vh - 80px); display: flex; flex-direction: column; }
     .phone-scroll-body { flex: 1; overflow-y: auto; }
@@ -36,7 +36,7 @@
     .pill:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
     @media (hover: hover) { .pill:hover { background: #e0e0e0; color: #333; } }
     .pill.active { background: #111; color: #fff; font-weight: 500; }
-    .toggle-bar { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; margin-bottom: 24px; }
+    .toggle-bar { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #888; }
     .toggle-switch { width: 32px; height: 18px; border-radius: 9px; background: #ccc; cursor: pointer; position: relative; transition: background 0.15s ease; flex-shrink: 0; outline: none; touch-action: manipulation; }
     .toggle-switch:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
     .toggle-knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: left 0.15s ease; }
@@ -58,7 +58,7 @@
     .right-logic { display: flex; flex-direction: column; align-items: flex-start; gap: 40px; align-self: stretch; margin-top: 16px; }
     .logic-section { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; align-self: stretch; }
     .logic-section-title { align-self: stretch; color: #aaa; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
-    .logic-rule { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; background: #fff; border-radius: 10px; border: 0.5px solid #e8e8e8; width: 100%; }
+    .logic-rule { display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; background: #fff; border-radius: 10px; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.08); width: 100%; }
     .logic-rule-title { align-self: stretch; color: #000; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 500; line-height: 18px; letter-spacing: 0; }
     .logic-rule-desc { align-self: stretch; color: #707070; font-family: "SF Pro Text", -apple-system, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; line-height: 20px; letter-spacing: 0; }
     .page-fade { animation: pageFadeIn 150ms ease-out; }
@@ -72,7 +72,7 @@
 <body>
 <nav class="left-nav">
   <div class="nav-logo">
-    <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.0754 0.00610554C22.8207 -0.152759 24.8485 2.81053 24.9904 6.33078C25.1934 10.9846 22.1309 16.5934 18.8453 16.713C17.8115 16.7532 17.2226 16.2159 17.2226 15.2608V14.8431H17.1768C17.1768 14.8431 17.1006 15.002 16.9386 15.2412C15.8638 16.8121 13.978 18.2839 12.0913 18.3437C10.5705 18.4035 9.88067 17.6074 9.88067 15.858V15.2618H9.83493C9.83493 15.2618 9.79967 15.3412 9.59671 15.6599C9.39374 15.9785 6.67614 19.8763 2.90465 19.9959C1.36385 20.0557 -0.0969161 19.4791 0.0050418 16.814C0.330926 10.1884 9.74059 0.284586 18.0754 0.00610554ZM16.4727 8.34742C17.255 8.34742 17.7419 7.58861 17.7419 6.65318C17.7419 5.71775 17.255 4.95894 16.4727 4.95894C15.6904 4.95894 15.2034 5.71775 15.2034 6.65318C15.2034 7.58861 15.6904 8.34742 16.4727 8.34742ZM20.4424 8.34742C21.2247 8.34742 21.7116 7.58861 21.7116 6.65318C21.7116 5.71775 21.2247 4.95894 20.4424 4.95894C19.66 4.95894 19.1731 5.71775 19.1731 6.65318C19.1731 7.58861 19.66 8.34742 20.4424 8.34742Z" fill="#AB9FF2"/></svg>
+    <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="pointer-events:none;user-select:none;flex-shrink:0;"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.0754 0.00610554C22.8207 -0.152759 24.8485 2.81053 24.9904 6.33078C25.1934 10.9846 22.1309 16.5934 18.8453 16.713C17.8115 16.7532 17.2226 16.2159 17.2226 15.2608V14.8431H17.1768C17.1768 14.8431 17.1006 15.002 16.9386 15.2412C15.8638 16.8121 13.978 18.2839 12.0913 18.3437C10.5705 18.4035 9.88067 17.6074 9.88067 15.858V15.2618H9.83493C9.83493 15.2618 9.79967 15.3412 9.59671 15.6599C9.39374 15.9785 6.67614 19.8763 2.90465 19.9959C1.36385 20.0557 -0.0969161 19.4791 0.0050418 16.814C0.330926 10.1884 9.74059 0.284586 18.0754 0.00610554ZM16.4727 8.34742C17.255 8.34742 17.7419 7.58861 17.7419 6.65318C17.7419 5.71775 17.255 4.95894 16.4727 4.95894C15.6904 4.95894 15.2034 5.71775 15.2034 6.65318C15.2034 7.58861 15.6904 8.34742 16.4727 8.34742ZM20.4424 8.34742C21.2247 8.34742 21.7116 7.58861 21.7116 6.65318C21.7116 5.71775 21.2247 4.95894 20.4424 4.95894C19.66 4.95894 19.1731 5.71775 19.1731 6.65318C19.1731 7.58861 19.66 8.34742 20.4424 8.34742Z" fill="#AB9FF2"/></svg>
     <span class="nav-logo-text">Phantom Activity</span>
   </div>
   <div class="nav-section">
