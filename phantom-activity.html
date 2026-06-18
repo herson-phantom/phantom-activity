@@ -6,6 +6,27 @@
   <title>Phantom Activity</title>
   <style>
     :root {
+      --Text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      --Display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+      --Text-Base: #EEE;
+      --Image-Size: 56px;
+      --Text-Size-lg: 18px;
+      --Text-Height-lg: 24px;
+      --Text-Space-lg: -0.1px;
+      --Display-Size-md: 32px;
+      --Display-Height-md: 36px;
+      --Display-Space-md: 0px;
+      --Foreground-Bright-Positive: #45E863;
+      --Foreground-Default-Primary: #E3E4E4;
+      --Foreground-Default-Secondary: #B3B3B3;
+      --Text-Size-md: 16px;
+      --Text-Height-md: 20px;
+      --Text-Space-md: -0.1px;
+      --Display-Size-xs: 20px;
+      --Display-Height-xs: 24px;
+      --Display-Space-xs: 0px;
+      --Gap-lg: 12px;
+      --Gap-3xl: 20px;
       --color-bg: #fff;
       --color-nav-bg: #FAFAFA;
       --color-border: #ECECEC;
@@ -129,7 +150,7 @@
     .right-panel-header { padding: 32px 20px 20px 20px; display: flex; flex-direction: column; gap: 24px; flex-shrink: 0; background: var(--color-panel-bg); }
     .right-panel-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 0 20px 24px 20px; }
     .right-panel-scroll::-webkit-scrollbar { display: none; }
-    .phone { background: #000; border-radius: 44px; overflow: hidden; width: 390px; flex-shrink: 0; height: calc(100vh - 80px); display: flex; flex-direction: column; }
+    .phone { background: #000; border-radius: 44px; overflow: hidden; width: 390px; flex-shrink: 0; height: calc(100vh - 80px); display: flex; flex-direction: column; position: relative; }
     .phone-scroll-body { flex: 1; overflow-y: auto; }
     .phone-scroll-body::-webkit-scrollbar { display: none; }
     .phone-header { padding: 16px 20px 12px; border-bottom: 0.5px solid #242424; }
@@ -146,10 +167,10 @@
     .toggle-switch:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
     .toggle-knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: left 0.15s ease; }
     .toggle-switch.on { background: #AB9FF2; } .toggle-switch.on .toggle-knob { left: 16px; }
-    .section-head { display: flex; align-items: center; gap: 10px; padding: 20px 20px 8px; }
+    .section-head { display: flex; align-items: center; gap: 10px; padding: 40px 20px 8px; }
     .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #444; white-space: nowrap; }
     .section-line { flex: 1; height: 0.5px; background: #242424; }
-    .row { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-bottom: 0.5px solid #1a1a1a; min-height: 44px; transition: background 0.1s ease; }
+    .row { display: flex; align-items: center; gap: 12px; padding: 12px 20px; min-height: 44px; transition: background 0.1s ease; }
     @media (hover: hover) { .row:hover { background: rgba(255,255,255,0.02); } }
     .row:last-child { border-bottom: none; }
     .row-info { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; flex: 1 1 0; min-width: 0; }
@@ -172,6 +193,36 @@
       .page-fade { animation: none; }
       *, *::before, *::after { transition-duration: 0.01ms; animation-duration: 0.01ms; }
     }
+
+    /* ── TX DETAIL BOTTOM SHEET ── */
+    .tx-overlay { position: absolute; inset: 0; z-index: 20; display: flex; align-items: flex-end; background: rgba(0,0,0,0); pointer-events: none; transition: background 0.32s ease; }
+    .tx-overlay.open { background: rgba(0,0,0,0); pointer-events: all; }
+    .tx-sheet { width: 100%; height: 100%; background: #0E0E0E; border-radius: 0; overflow-y: auto; transform: translateY(100%); transition: transform 0.44s cubic-bezier(0.32,0.72,0,1); flex-shrink: 0; }
+    .tx-sheet::-webkit-scrollbar { display: none; }
+    .tx-overlay.open .tx-sheet { transform: translateY(0); }
+    .tx-close-row { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; gap: 10px; padding: 16px 24px 12px; box-shadow: 0 2px 32px 0 rgba(0,0,0,0.24); backdrop-filter: blur(17.5px); -webkit-backdrop-filter: blur(17.5px); background: rgba(14,14,14,0.6); }
+    .tx-close-btn { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.05) 100%), rgba(0,0,0,0.50); border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 2px 32px 0 rgba(0,0,0,0.24); backdrop-filter: blur(17.5px); -webkit-backdrop-filter: blur(17.5px); display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(255,255,255,0.6); outline: none; touch-action: manipulation; flex-shrink: 0; transition: opacity 0.12s ease; }
+    @media (hover: hover) { .tx-close-btn:hover { opacity: 0.75; } }
+    .tx-close-btn:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
+    .tx-hero { padding: 24px 24px 0; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; align-self: stretch; }
+    .tx-hero-avatar { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; }
+    .tx-hero-text { display: flex; flex-direction: column; gap: 10px; align-self: stretch; }
+    .tx-hero-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden; color: var(--Text-Base, #EEE); text-align: left; text-overflow: ellipsis; font-family: var(--Text, "SF Pro Text"); font-size: var(--Text-Size-lg, 18px); font-style: normal; font-weight: 400; line-height: var(--Text-Height-lg, 24px); letter-spacing: var(--Text-Space-lg, -0.1px); align-self: stretch; }
+    .tx-hero-amount { color: var(--Foreground-Bright-Positive, #45E863); text-align: left; font-family: var(--Display, "SF Pro Display"); font-size: var(--Display-Size-md, 32px); font-style: normal; font-weight: 400; line-height: var(--Display-Height-md, 36px); letter-spacing: var(--Display-Space-md, 0); font-variant-numeric: tabular-nums; align-self: stretch; }
+    .tx-body { padding: 0 24px 60px; }
+    .tx-hdivider { height: 1px; align-self: stretch; background: var(--Border, #262626); margin: 24px 0; }
+    .tx-section-title { align-self: stretch; color: var(--Foreground-Default-Primary, #E3E4E4); font-family: var(--Display, "SF Pro Display"); font-size: var(--Display-Size-xs, 20px); font-style: normal; font-weight: 500; line-height: var(--Display-Height-xs, 24px); letter-spacing: var(--Display-Space-xs, 0); margin-bottom: 4px; }
+    .tx-section { display: flex; flex-direction: column; align-items: flex-start; gap: var(--Gap-3xl, 24px); align-self: stretch; }
+    .tx-detail-list { display: flex; flex-direction: column; align-items: flex-start; gap: var(--Gap-lg, 12px); align-self: stretch; }
+    .tx-detail-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; align-self: stretch; }
+    .tx-detail-label { overflow: hidden; color: var(--Foreground-Default-Secondary, #B3B3B3); text-overflow: ellipsis; font-family: var(--Text, "SF Pro Text"); font-size: var(--Text-Size-md, 16px); font-style: normal; font-weight: 400; line-height: var(--Text-Height-md, 20px); letter-spacing: var(--Text-Space-md, -0.1px); white-space: nowrap; }
+    .tx-detail-value { overflow: hidden; color: var(--Foreground-Default-Primary, #E3E4E4); text-overflow: ellipsis; font-family: var(--Text, "SF Pro Text"); font-size: var(--Text-Size-md, 16px); font-style: normal; font-weight: 400; line-height: var(--Text-Height-md, 20px); letter-spacing: var(--Text-Space-md, -0.1px); text-align: right; }
+    .tx-explorer-link { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 20px 0 4px; cursor: pointer; overflow: hidden; color: var(--Foreground-Default-Primary, #E3E4E4); text-overflow: ellipsis; font-variant-numeric: lining-nums tabular-nums; font-family: var(--Text, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif); font-size: var(--Text-Size-md, 17px); font-style: normal; font-weight: 400; line-height: var(--Text-Height-md, 22px); letter-spacing: var(--Text-Space-md, -0.1px); }
+    @media (hover: hover) { .tx-explorer-link:hover { opacity: 0.7; } }
+    .tx-action-btn { display: flex; height: var(--Dimension-1200, 48px); padding: 0 var(--Dimension-400, 16px); justify-content: center; align-items: center; gap: var(--Dimension-150, 6px); align-self: stretch; border-radius: var(--radius-Full, 1000px); border: 1px solid var(--Stroke-Gummy-Dim, rgba(255,255,255,0.03)); background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.06) 100%), rgba(0,0,0,0.35); box-shadow: 0 2px 32px 0 rgba(0,0,0,0.10); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); overflow: hidden; color: #FFF; text-overflow: ellipsis; font-variant-numeric: lining-nums tabular-nums; font-family: var(--Text, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif); font-size: var(--Text-Size-md, 17px); font-style: normal; font-weight: 510; line-height: var(--Text-Height-md, 22px); letter-spacing: var(--Text-Space-md, -0.1px); cursor: pointer; touch-action: manipulation; outline: none; width: 100%; margin-top: 16px; transition: opacity 0.12s ease; }
+    @media (hover: hover) { .tx-action-btn:hover { opacity: 0.85; } }
+    .tx-action-btn:focus-visible { box-shadow: 0 0 0 2px #AB9FF2; }
+    .row { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -808,37 +859,41 @@ const pages = {
 
 let activePage='cat-trading', legendFilter='all', assetScreen=false;
 
-function buildAvatarHtml(tx, useAction) {
+function buildAvatarHtml(tx, useAction, size = 40) {
+  const pad = Math.round(9 * (size / 40));
   const wrapIcon = (inner) =>
-    `<div style="display:flex;width:40px;height:40px;padding:9px;justify-content:center;align-items:center;border-radius:9999px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.05) 100%), rgba(0,0,0,0.50);box-sizing:border-box;flex-shrink:0;">${inner}</div>`;
-  const wrapImg = (inner) =>
-    `<div style="display:flex;width:40px;height:40px;padding:0;justify-content:center;align-items:center;border-radius:9999px;border:1px solid rgba(255,255,255,0.03);overflow:hidden;box-sizing:border-box;flex-shrink:0;"><div style="flex:1 0 0;align-self:stretch;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;">${inner}</div></div>`;
+    `<div style="display:flex;width:${size}px;height:${size}px;padding:${pad}px;justify-content:center;align-items:center;border-radius:9999px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.05) 100%), rgba(0,0,0,0.50);box-sizing:border-box;flex-shrink:0;">${inner}</div>`;
+  const wrapImg = (inner) => {
+    const sized = inner.replace(/width="40"/g, `width="${size}"`).replace(/height="40"/g, `height="${size}"`);
+    return `<div style="position:relative;width:${size}px;height:${size}px;border-radius:9999px;overflow:hidden;box-sizing:border-box;flex-shrink:0;">${sized}<div style="position:absolute;inset:0;border-radius:9999px;border:1px solid rgba(255,255,255,0.12);pointer-events:none;"></div></div>`;
+  };
   const wrap = wrapIcon;
+  const wrapAction = (svg) => wrapIcon(svg);
   if (useAction) {
     const a = tx.actionIcon||'generic';
-    if (a==='recurring')   return wrapActionIcon(ICON_RECURRING);
-    if (a==='open-pos')    return wrapActionIcon(ICON_OPEN_POS);
-    if (a==='close-pos')   return wrapActionIcon(ICON_CLOSE_POS);
-    if (a==='liquidated')  return wrapActionIcon(ICON_LIQUIDATED);
-    if (a==='limit-buy')   return wrapActionIcon(ICON_LIMIT_BUY);
-    if (a==='ladder-in')   return wrapActionIcon(ICON_LADDER_IN);
-    if (a==='take-profit') return wrapActionIcon(ICON_TAKE_PROFIT);
-    if (a==='stop-loss')   return wrapActionIcon(ICON_STOP_LOSS);
-    if (a==='ladder-out')  return wrapActionIcon(ICON_LADDER_OUT);
-    if (a==='swap')        return wrapActionIcon(ICON_SWAP);
-    if (a==='cancel')       return wrapActionIcon(ICON_CANCEL);
-    if (a==='wallet')       return wrapIcon(WALLET_SVG);
-    if (a==='deactivate')      return wrapActionIcon(ICON_DEACTIVATE);
-    if (a==='recover')         return wrapActionIcon(ICON_RECOVER);
-    if (a==='switch')          return wrapActionIcon(ICON_SWITCH);
-    if (a==='phantom-stroke')  return wrapActionIcon(ICON_PHANTOM_STROKE);
-    if (a==='bridge')          return wrapActionIcon(ICON_BRIDGE);
-    if (a==='burn')            return wrapActionIcon(ICON_BURN);
-    if (a==='dca')             return wrapActionIcon(ICON_DCA);
-    if (a==='limit-order')     return wrapActionIcon(ICON_LIMIT_ORDER);
-    if (a==='stake')           return wrapActionIcon(ICON_STAKE);
-    if (a==='withdraw-stake')  return wrapActionIcon(ICON_WITHDRAW_STAKE);
-    return `<div style="width:40px;height:40px;border-radius:50%;background:#1e1e1e;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="#555"/></svg></div>`;
+    if (a==='recurring')   return wrapAction(ICON_RECURRING);
+    if (a==='open-pos')    return wrapAction(ICON_OPEN_POS);
+    if (a==='close-pos')   return wrapAction(ICON_CLOSE_POS);
+    if (a==='liquidated')  return wrapAction(ICON_LIQUIDATED);
+    if (a==='limit-buy')   return wrapAction(ICON_LIMIT_BUY);
+    if (a==='ladder-in')   return wrapAction(ICON_LADDER_IN);
+    if (a==='take-profit') return wrapAction(ICON_TAKE_PROFIT);
+    if (a==='stop-loss')   return wrapAction(ICON_STOP_LOSS);
+    if (a==='ladder-out')  return wrapAction(ICON_LADDER_OUT);
+    if (a==='swap')        return wrapAction(ICON_SWAP);
+    if (a==='cancel')      return wrapAction(ICON_CANCEL);
+    if (a==='wallet')      return wrapIcon(WALLET_SVG);
+    if (a==='deactivate')     return wrapAction(ICON_DEACTIVATE);
+    if (a==='recover')        return wrapAction(ICON_RECOVER);
+    if (a==='switch')         return wrapAction(ICON_SWITCH);
+    if (a==='phantom-stroke') return wrapAction(ICON_PHANTOM_STROKE);
+    if (a==='bridge')         return wrapAction(ICON_BRIDGE);
+    if (a==='burn')           return wrapAction(ICON_BURN);
+    if (a==='dca')            return wrapAction(ICON_DCA);
+    if (a==='limit-order')    return wrapAction(ICON_LIMIT_ORDER);
+    if (a==='stake')          return wrapAction(ICON_STAKE);
+    if (a==='withdraw-stake') return wrapAction(ICON_WITHDRAW_STAKE);
+    return wrapAction(`<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" fill="#555"/></svg>`);
   }
   if (tx.icon==='phantom')       return wrapImg(PHANTOM_SVG);
   if (tx.icon==='bank')          return wrapIcon(BANK_SVG);
@@ -848,14 +903,14 @@ function buildAvatarHtml(tx, useAction) {
   if (tx.icon==='usdc'||tx.icon==='usdc-nobadge') return wrapImg(USDC_IMG);
   if (tx.icon==='btc')           return wrapImg(BTC_IMG);
   if (tx.icon==='prediction')    return wrapImg(PRED_IMG);
-  if (tx.icon==='nft')           return wrap(DINO_IMG);
+  if (tx.icon==='nft')           return wrapImg(DINO_IMG);
   if (tx.icon==='username')      return wrapImg(USERNAME_IMG);
   if (tx.icon==='bear')          return wrapImg(BEAR_IMG);
   if (tx.icon==='fox')           return wrapImg(FOX_IMG);
   if (tx.icon==='eth')           return wrapImg(ETH_IMG);
   if (tx.icon==='ghost')         return wrapImg(GHOST_SVG);
   if (tx.icon==='wallet')        return wrapIcon(WALLET_SVG);
-  if (tx.icon==='doordash')      return DOORDASH_SVG;
+  if (tx.icon==='doordash')      return wrapImg(DOORDASH_SVG.replace(/^<div[^>]*>/, '').replace(/<\/div>$/, ''));
   return wrapIcon(WALLET_SVG);
 }
 
@@ -940,6 +995,10 @@ function render() {
       </div>
     </div>`:'';
 
+  // Remove any open detail sheet before re-rendering the phone
+  const _existingOverlay = document.getElementById('txOverlay');
+  if (_existingOverlay) _existingOverlay.remove();
+  _txRows = [];
   let rowsHtml='';
   page.cats.forEach(catId=>{
     const txs=data.transactions[catId]||[];
@@ -973,7 +1032,9 @@ function render() {
             :(st.s==='hold'||st.s==='neutral'||(st.s==='pending'&&isNeutralTx))
               ?'color:#606060;'
               :`color:${getAmtColor(st.s,st.amount)};`;
-          rowsHtml+=`<div class="row">
+          const _idx = _txRows.length;
+          _txRows.push({ tx, st, date: d, useAction });
+          rowsHtml+=`<div class="row" onclick="openTxDetail(${_idx})" tabindex="0" onkeydown="if(event.key==='Enter')openTxDetail(${_idx})" role="button" aria-label="${tx.mockTitle}">
             ${buildAvatarHtml(tx,useAction)}
             <div class="row-info">
               <div class="row-name">${tx.mockTitle}</div>
@@ -1226,6 +1287,299 @@ const pageLogic = {
     ]
   },
 };
+
+/* ── TX DETAIL SHEET ── */
+let _txRows = [];
+
+function openTxDetail(idx) {
+  const d = _txRows[idx];
+  if (!d) return;
+  // Remove any existing overlay
+  const existing = document.getElementById('txOverlay');
+  if (existing) existing.remove();
+  // Build overlay inside the phone
+  const phone = document.getElementById('phone');
+  const overlay = document.createElement('div');
+  overlay.id = 'txOverlay';
+  overlay.className = 'tx-overlay';
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeTxDetail(); });
+  const sheet = document.createElement('div');
+  sheet.id = 'txSheet';
+  sheet.className = 'tx-sheet';
+  sheet.innerHTML = buildDetailHtml(d.tx, d.st, d.date, d.useAction);
+  overlay.appendChild(sheet);
+  phone.appendChild(overlay);
+  // Trigger open animation next frame
+  requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
+  document._txEsc = (e) => { if (e.key === 'Escape') closeTxDetail(); };
+  document.addEventListener('keydown', document._txEsc);
+}
+
+function closeTxDetail() {
+  const overlay = document.getElementById('txOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  setTimeout(() => overlay.remove(), 450);
+  if (document._txEsc) { document.removeEventListener('keydown', document._txEsc); document._txEsc = null; }
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('txOverlay')) closeTxDetail();
+}
+
+function getDetailStatus(st) {
+  const s = st.s;
+  if (s === 'pending') return 'Pending';
+  if (s === 'failed-tx') return '<span style="color:#d95c5c;">Failed</span>';
+  if (s === 'declined') return '<span style="color:#d95c5c;">Declined</span>';
+  if (s === 'hold') return 'Hold';
+  return 'Success';
+}
+
+function getDetailType(tx) {
+  const grp = tx.group || tx.mockSub || '';
+  const map = { Trade:'Trade', Swap:'Trade', Transfer:'Transfer', Send:'Transfer', Receive:'Transfer', Stake:'Staking', Deposit:'Deposit', Predictions:'Prediction', Perps:'Perpetuals', Activity:'Activity', Bridge:'Bridge', Token:'Token', NFT:'NFT', DCA:'DCA', Leverage:'Trade', Positions:'Trade', Account:'Transfer' };
+  return map[grp] || grp || 'Transaction';
+}
+
+function tokenPrice(asset) {
+  const prices = { SOL:'$143.82', USDC:'$1.00', BTC:'$43,521.00', ETH:'$2,418.55', BONK:'$0.000021', wSOL:'$143.82' };
+  return prices[asset] || null;
+}
+
+function getDetailSection(tx, st) {
+  const grp = tx.group || tx.mockSub || '';
+  const title = tx.mockTitle || '';
+  const amount = st.amount || '';
+  const name = tx.name || '';
+
+  // Swap / Unwrap / Wrap
+  if (grp === 'Swap' || title.includes('Swapped') || title.includes('Unwrapped') || title.includes('Wrapped')) {
+    const arrowMatch = title.match(/(.+?)\s*→\s*(.+)/);
+    const fromAsset = arrowMatch ? arrowMatch[1].replace(/^(Swapped|Unwrapped|Wrapped)\s+/,'').trim() : 'SOL';
+    const toAsset   = arrowMatch ? arrowMatch[2].trim() : 'USDC';
+    const paid = amount.startsWith('-') ? amount.replace('-','') : `0.75 ${fromAsset}`;
+    const received = amount.startsWith('+') ? amount.replace('+','') : `100 ${toAsset}`;
+    const rows = [['Provider','Phantom'],['You Paid', paid],['You Received', received]];
+    const fromPrice = tokenPrice(fromAsset);
+    const toPrice   = tokenPrice(toAsset);
+    if (fromPrice) rows.push([`${fromAsset} price then`, fromPrice]);
+    if (toPrice && toAsset !== fromAsset) rows.push([`${toAsset} price then`, toPrice]);
+    return { title:'Swap Details', rows };
+  }
+
+  // Bridge
+  if (grp === 'Bridge' || title.includes('Bridged')) {
+    const arrowMatch = title.match(/Bridged\s+(\w+)\s*→\s*(\w+)/);
+    const from = arrowMatch ? arrowMatch[1] : 'SOL';
+    const to   = arrowMatch ? arrowMatch[2] : 'ETH';
+    const fromChain = (from === 'SOL' || from === 'Solana') ? 'Solana' : (from === 'ETH' || from === 'Ethereum') ? 'Ethereum' : from;
+    const toChain   = (to   === 'ETH' || to   === 'Ethereum') ? 'Ethereum' : (to === 'SOL' || to === 'Solana') ? 'Solana' : to;
+    const rows = [['From', fromChain],['To', toChain],['Bridge Fee','0.001 SOL']];
+    const fromPrice = tokenPrice(from);
+    const toPrice   = tokenPrice(to);
+    if (fromPrice) rows.push([`${from} price then`, fromPrice]);
+    if (toPrice)   rows.push([`${to} price then`, toPrice]);
+    return { title:'Bridge Details', rows };
+  }
+
+  // Transfer / Send / Receive
+  if (grp === 'Transfer' || grp === 'Send' || grp === 'Receive') {
+    const isSend = grp === 'Send' || title.startsWith('To ') || tx.actionIcon === 'send';
+    const counterparty = title.replace(/^(To|From)\s+/,'') || '7diG...O5at';
+    const icon = tx.icon || '';
+    const fee = icon === 'bank' ? '$0.25' : '0.000005 SOL';
+    const feeLabel = icon === 'bank' ? 'Transfer Fee' : 'Network Fee';
+    const assetMatch = amount.match(/[\d.]+ (\w+)$/);
+    const asset = assetMatch ? assetMatch[1] : 'SOL';
+    const price = tokenPrice(asset);
+    const rows = [[isSend ? 'To' : 'From', counterparty],[feeLabel, fee]];
+    if (price && icon !== 'bank') rows.push([`${asset} price then`, price]);
+    return { title:'Transfer Details', rows };
+  }
+
+  // Staking (group Stake OR mockSub Stake)
+  if (grp === 'Stake' || tx.mockSub === 'Stake') {
+    const isDeactivate = name.includes('Deactivat') || title.includes('Deactivat');
+    const isWithdraw   = name.includes('Withdrew')  || title.includes('Withdrew');
+    const rows = [['Validator','Jito'],['APY','7.2%'],['SOL price then', tokenPrice('SOL')]];
+    if (isDeactivate) rows.push(['Cooldown','~3 days']);
+    if (isWithdraw)   rows.push(['Epoch','Epoch 598']);
+    return { title:'Stake Details', rows };
+  }
+
+  // DCA
+  if (grp === 'DCA') {
+    const isBuy    = name.includes('Buy') || title.includes('Buy');
+    const isCancel = name.includes('Cancel') || st.s === 'none';
+    if (isCancel) return { title:'DCA Details', rows:[['Order','DCA SOL → USDC'],['Frequency','Daily']] };
+    if (isBuy)    return { title:'DCA Details', rows:[['Order','DCA SOL → USDC'],['Frequency','Daily'],['Filled at','$143.80']] };
+    return { title:'DCA Details', rows:[['Order','DCA SOL → USDC'],['Frequency','Daily'],['Amount per Order','$25.00']] };
+  }
+
+  // Leverage / Perps Positions
+  if (grp === 'Leverage' || grp === 'Positions') {
+    const levMatch  = title.match(/(\d+)x/);
+    const lev       = levMatch ? levMatch[1] + 'x' : '4x';
+    const assetMatch = title.match(/(\w+)\s+\d+x/);
+    const asset     = assetMatch ? assetMatch[1] : (tx.icon === 'btc' ? 'BTC' : 'SOL');
+    const isLong    = title.includes('Long');
+    const isLiquidated = name.includes('Liquidated') || title.includes('Liquidated');
+    const entryPrice = asset === 'BTC' ? '$43,521.00' : '$145.20';
+    const markPrice  = asset === 'BTC' ? '$44,100.50' : '$148.50';
+    const rows = [['Asset', asset],['Leverage', lev],['Direction', isLong ? 'Long' : 'Short'],['Entry Price', entryPrice]];
+    if (!isLiquidated) rows.push(['Mark Price', markPrice]);
+    else rows.push(['Liquidation Price', asset === 'BTC' ? '$40,200.00' : '$138.40']);
+    return { title:'Position Details', rows };
+  }
+
+  // NFT
+  if (grp === 'NFT') {
+    const tokenMatch = title.match(/#(\d+)/);
+    const tokenId    = tokenMatch ? '#' + tokenMatch[1] : '#7420';
+    const action     = name.includes('Bought') ? 'Buy' : name.includes('Sold') ? 'Sell' : name.includes('Listed') ? 'List' : name.includes('Bid') ? 'Bid' : 'View';
+    const rows = [['Collection','Claynosaurz'],['Token ID', tokenId],['Marketplace','Magic Eden']];
+    if (action === 'Buy' || action === 'Sell') rows.push(['Royalty Fee','5%']);
+    return { title:'NFT Details', rows };
+  }
+
+  // Predictions
+  if (grp === 'Predictions' || grp === 'Resolved' || grp === 'Manage' || (grp === 'Trade' && title.includes('Messi'))) {
+    const isResolved = grp === 'Resolved' || st.s === 'moneyin' || st.s === 'moneyout';
+    const rows = [['Market','Will Messi retire in 2026?'],['Outcome','Yes']];
+    if (isResolved) rows.push(['Result', st.s === 'moneyin' ? 'Won' : 'Lost']);
+    else rows.push(['Resolution','Dec 31, 2026']);
+    return { title:'Prediction Details', rows };
+  }
+
+  // Perps Account (Deposit / Withdrawal / Funding / Bonus)
+  if (grp === 'Account') {
+    const isIn  = amount.startsWith('+');
+    const isBonus = name.includes('Bonus');
+    const dir   = isBonus ? 'Bonus' : isIn ? 'Deposit' : 'Withdrawal';
+    return { title:'Account Details', rows:[['Direction', dir],['Platform','Drift Protocol'],['Account','Perps Account']] };
+  }
+
+  // Onramps / Deposits
+  if (grp === 'Deposit' || tx.mockSub === 'Deposit') {
+    const isMicro = name.includes('Micro') || title.includes('Micro');
+    return { title:'Deposit Details', rows:[
+      ['Method', isMicro ? 'Microdeposit Verification' : 'ACH Transfer'],
+      ['Provider','MoonPay'],
+      ['Settlement','1–3 business days'],
+    ]};
+  }
+
+  // Cards
+  if (tx.mockSub === 'Purchase' || tx.mockSub === 'Refund') {
+    const isRefund = tx.mockSub === 'Refund';
+    return { title: isRefund ? 'Refund Details' : 'Purchase Details', rows:[
+      ['Merchant', title],
+      ['Card','Phantom Card •••• 4829'],
+      [isRefund ? 'Refund to' : 'Category', isRefund ? 'Phantom Card' : 'Food & Drink'],
+    ]};
+  }
+
+  // Token operations (Burn / Revoke)
+  if (grp === 'Token') {
+    const isRevoke = name.includes('Revok');
+    const isBurn   = name.includes('Burn');
+    const asset    = tx.icon === 'usdc' || tx.icon === 'usdc-nobadge' ? 'USDC' : tx.icon === 'bonk' ? 'BONK' : tx.icon === 'nft' ? 'Claynosaurz #7420' : 'Token';
+    const price = tokenPrice(asset === 'BONK' ? 'BONK' : asset === 'USDC' ? 'USDC' : 'SOL');
+    if (isRevoke) return { title:'Token Details', rows:[['Token', asset],['Permission Revoked','Spend Access'],['Contract','Ax2e...9fKL']] };
+    if (isBurn) {
+      const rows = [['Token', asset],['Amount Burned', amount.replace('-','') || '0'],['Contract','BoNk...1234']];
+      if (price) rows.push([`${asset} price then`, price]);
+      return { title:'Token Details', rows };
+    }
+    return { title:'Token Details', rows:[['Token', asset]] };
+  }
+
+  // Activity / Unknown
+  if (grp === 'Activity' || grp === 'Activity w/ Amount') {
+    return { title:'Transaction Details', rows:[['Program','Unknown Program'],['Instruction','Custom Instruction']] };
+  }
+
+  return null;
+}
+
+function getActionLabel(tx) {
+  const title = tx.mockTitle || '';
+  const grp   = tx.group || tx.mockSub || '';
+  const name  = tx.name  || '';
+  if (grp === 'Swap' || title.includes('Swapped') || title.includes('Unwrapped')) return 'Swap Again';
+  if (grp === 'Bridge' || title.includes('Bridged')) return 'Bridge Again';
+  if (grp === 'Send'    || title.startsWith('To '))   return 'Send Again';
+  if (grp === 'Receive' || title.startsWith('From ')) return 'Request Again';
+  if (grp === 'Stake' || tx.mockSub === 'Stake') return 'Stake Again';
+  if (grp === 'DCA')  return 'Set Up DCA';
+  if (grp === 'NFT' && (name.includes('Bought') || name.includes('Bid'))) return 'Buy Again';
+  if (grp === 'NFT' && name.includes('Sold'))  return 'Sell Again';
+  if (grp === 'NFT')   return 'View Collection';
+  if (grp === 'Predictions' || grp === 'Resolved' || grp === 'Manage') return 'View Market';
+  if (grp === 'Account') return 'Go to Perps';
+  if (grp === 'Leverage' || grp === 'Positions') return 'View Position';
+  if (tx.mockSub === 'Deposit') return 'Deposit Again';
+  if (tx.mockSub === 'Purchase') return 'Done';
+  if (tx.mockSub === 'Refund')   return 'Done';
+  if (grp === 'Token') return 'Done';
+  return 'Done';
+}
+
+function buildDetailHtml(tx, st, date, useAction) {
+  const s = st.s;
+  const isDeclined = s === 'declined';
+  const isNeutralTx = tx.states.every(s=>s.s==='neutral'||s.s==='pending') && tx.states.some(s=>s.s==='neutral');
+  const amtStyle = (isDeclined || s === 'strikethrough' || s === 'failed-tx')
+    ? 'color:#606060;text-decoration:line-through;'
+    : (s === 'hold' || s === 'neutral' || (s === 'pending' && isNeutralTx))
+      ? 'color:#606060;'
+      : `color:${getAmtColor(s, st.amount)};`;
+  const amtText = st.amount || '';
+  const detailSec = getDetailSection(tx, st);
+  const actionLabel = getActionLabel(tx);
+  const avatarHtml = buildAvatarHtml(tx, useAction, 56);
+
+  const secHtml = detailSec ? `
+    <div class="tx-hdivider"></div>
+    <div class="tx-section">
+      <div class="tx-section-title">${detailSec.title}</div>
+      <div class="tx-detail-list">${detailSec.rows.map(([l,v]) => `<div class="tx-detail-row"><span class="tx-detail-label">${l}</span><span class="tx-detail-value">${v}</span></div>`).join('')}</div>
+    </div>` : '';
+
+  return `
+    <div class="tx-close-row">
+      <button class="tx-close-btn" onclick="closeTxDetail()" aria-label="Close">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="tx-hero">
+      <div class="tx-hero-avatar">${avatarHtml}</div>
+      <div class="tx-hero-text">
+        <div class="tx-hero-title">${tx.mockTitle}</div>
+        ${amtText ? `<div class="tx-hero-amount" style="${amtStyle}">${amtText}</div>` : ''}
+      </div>
+    </div>
+    <div class="tx-body">
+      <div class="tx-hdivider"></div>
+      <div class="tx-section">
+        <div class="tx-section-title">Transaction Details</div>
+        <div class="tx-detail-list">
+          <div class="tx-detail-row"><span class="tx-detail-label">Date</span><span class="tx-detail-value">${date} at 4:00 pm</span></div>
+          <div class="tx-detail-row"><span class="tx-detail-label">Status</span><span class="tx-detail-value">${getDetailStatus(st)}</span></div>
+          <div class="tx-detail-row"><span class="tx-detail-label">Network</span><span class="tx-detail-value">Solana</span></div>
+          <div class="tx-detail-row"><span class="tx-detail-label">Type</span><span class="tx-detail-value">${getDetailType(tx)}</span></div>
+        </div>
+      </div>
+      ${secHtml}
+      <div class="tx-hdivider"></div>
+      <div class="tx-explorer-link">
+        View on Solana
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M5 2.5H2.5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V9M8 1.5h3.5m0 0v3.5m0-3.5L5.5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <button class="tx-action-btn" onclick="closeTxDetail()">${actionLabel}</button>
+    </div>`;
+}
 
 render();
 syncThemeButtons();
