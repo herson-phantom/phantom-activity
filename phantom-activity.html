@@ -1568,10 +1568,12 @@ function getActionLabel(tx) {
   if (grp === 'Account') return 'Go to Perps';
   if (grp === 'Leverage' || grp === 'Positions') return 'View Position';
   if (tx.mockSub === 'Deposit') return 'Deposit Again';
-  if (tx.mockSub === 'Purchase') return 'Done';
-  if (tx.mockSub === 'Refund')   return 'Done';
-  if (grp === 'Token') return 'Done';
-  return 'Done';
+  if (tx.mockSub === 'Purchase') return null;
+  if (tx.mockSub === 'Refund')   return null;
+  if (grp === 'Token') return null;
+  if (grp === 'Activity' || grp === 'Activity w/ Amount') return null;
+  if (grp === 'Transfer') return null;
+  return null;
 }
 
 function buildDetailHtml(tx, st, date, useAction) {
@@ -1627,7 +1629,7 @@ function buildDetailHtml(tx, st, date, useAction) {
         View on Solana
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M5 2.5H2.5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V9M8 1.5h3.5m0 0v3.5m0-3.5L5.5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <button class="tx-action-btn" onclick="closeTxDetail()">${actionLabel}</button>
+      ${actionLabel ? `<button class="tx-action-btn" onclick="closeTxDetail()">${actionLabel}</button>` : ''}
     </div>`;
 }
 
