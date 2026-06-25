@@ -190,6 +190,19 @@
     .page-fade { animation: pageFadeIn 150ms ease-out; }
     @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes live-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.75); } }
+    @keyframes ghost-fly {
+      0%   { transform: translate(0,      0)      rotate(0deg)  scale(1);    opacity: 1; }
+      15%  { transform: translate(18vw,  -22vh)   rotate(6deg)  scale(0.98); opacity: 1; }
+      35%  { transform: translate(40vw,  -38vh)   rotate(12deg) scale(0.93); opacity: 1; }
+      55%  { transform: translate(62vw,  -47vh)   rotate(16deg) scale(0.87); opacity: 0.95; }
+      72%  { transform: translate(80vw,  -50vh)   rotate(18deg) scale(0.80); opacity: 0.85; }
+      85%  { transform: translate(94vw,  -51vh)   rotate(18deg) scale(0.74); opacity: 0.6; }
+      93%  { transform: translate(103vw, -51vh)   rotate(16deg) scale(0.70); opacity: 0.3; }
+      100% { transform: translate(112vw, -51vh)   rotate(14deg) scale(0.65); opacity: 0; }
+    }
+    @keyframes ghost-particle { 0% { transform: translate(0,0) scale(1); opacity: 0.9; } 100% { transform: translate(var(--px), var(--py)) scale(0); opacity: 0; } }
+    .ghost-shooter { position:fixed; pointer-events:none; z-index:99999; will-change:transform,opacity; animation: ghost-fly 0.98s linear forwards; }
+    .ghost-particle { position:fixed; pointer-events:none; z-index:99998; width:6px; height:6px; border-radius:50%; background: #AB9FF2; will-change:transform,opacity; animation: ghost-particle var(--dur) ease-out forwards; }
     @media (prefers-reduced-motion: reduce) {
       .page-fade { animation: none; }
       *, *::before, *::after { transition-duration: 0.01ms; animation-duration: 0.01ms; }
@@ -998,7 +1011,79 @@ function setTheme(mode) {
   const btnDark = document.getElementById('theme-btn-dark');
   if (btnLight) btnLight.classList.toggle('active', mode === 'light');
   if (btnDark) btnDark.classList.toggle('active', mode === 'dark');
-  if (mode === 'dark' && btnDark) spawnStars(btnDark);
+  if (mode === 'dark' && btnDark) { spawnStars(btnDark); shootGhost(); }
+}
+
+function shootGhost() {
+  const btn = document.getElementById('theme-btn-dark');
+  const rect = btn ? btn.getBoundingClientRect() : { left: 60, top: window.innerHeight - 60, width: 36, height: 36 };
+  const ghost = document.createElement('div');
+  ghost.className = 'ghost-shooter';
+  ghost.style.left = (rect.left + rect.width / 2 - 24) + 'px';
+  ghost.style.top  = (rect.top  + rect.height / 2 - 24) + 'px';
+  // Phantom ghost logo — filled purple
+  ghost.innerHTML = `<svg width="48" height="39" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.0754 0.00610554C22.8207 -0.152759 24.8485 2.81053 24.9904 6.33078C25.1934 10.9846 22.1309 16.5934 18.8453 16.713C17.8115 16.7532 17.2226 16.2159 17.2226 15.2608V14.8431H17.1768C17.1768 14.8431 17.1006 15.002 16.9386 15.2412C15.8638 16.8121 13.978 18.2839 12.0913 18.3437C10.5705 18.4035 9.88067 17.6074 9.88067 15.858V15.2618H9.83493C9.83493 15.2618 9.79967 15.3412 9.59671 15.6599C9.39374 15.9785 6.67614 19.8763 2.90465 19.9959C1.36385 20.0557 -0.0969161 19.4791 0.0050418 16.814C0.330926 10.1884 9.74059 0.284586 18.0754 0.00610554ZM16.4727 8.34742C17.255 8.34742 17.7419 7.58861 17.7419 6.65318C17.7419 5.71775 17.255 4.95894 16.4727 4.95894C15.6904 4.95894 15.2034 5.71775 15.2034 6.65318C15.2034 7.58861 15.6904 8.34742 16.4727 8.34742ZM20.4424 8.34742C21.2247 8.34742 21.7116 7.58861 21.7116 6.65318C21.7116 5.71775 21.2247 4.95894 20.4424 4.95894C19.66 4.95894 19.1731 5.71775 19.1731 6.65318C19.1731 7.58861 19.66 8.34742 20.4424 8.34742Z" fill="#AB9FF2"/></svg>`;
+  document.body.appendChild(ghost);
+
+  // Spawn particle trail — positions calculated mathematically to avoid reflow
+  const colors = ['#AB9FF2','#c4bbf7','#ffffff','#7c6fd4','#e8e4ff'];
+  const startX = rect.left + rect.width / 2;
+  const startY = rect.top  + rect.height / 2;
+  const duration = 0.98 * 1000;
+  // Keyframe waypoints matching the CSS animation (vw/vh → px at runtime)
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const waypoints = [
+    [0,       0],
+    [0.18*vw, -0.22*vh],
+    [0.40*vw, -0.38*vh],
+    [0.62*vw, -0.47*vh],
+    [0.80*vw, -0.50*vh],
+    [0.94*vw, -0.51*vh],
+    [1.03*vw, -0.51*vh],
+    [1.12*vw, -0.51*vh],
+  ];
+  const times = [0, 0.15, 0.35, 0.55, 0.72, 0.85, 0.93, 1.0];
+  function lerpWaypoint(t) {
+    for (let i = 1; i < times.length; i++) {
+      if (t <= times[i]) {
+        const seg = (t - times[i-1]) / (times[i] - times[i-1]);
+        return [
+          startX + waypoints[i-1][0] + (waypoints[i][0] - waypoints[i-1][0]) * seg,
+          startY + waypoints[i-1][1] + (waypoints[i][1] - waypoints[i-1][1]) * seg,
+        ];
+      }
+    }
+    return [startX + waypoints[waypoints.length-1][0], startY + waypoints[waypoints.length-1][1]];
+  }
+
+  const startTime = performance.now();
+  let particleCount = 0;
+  const trailInterval = setInterval(() => {
+    const elapsed = performance.now() - startTime;
+    const t = Math.min(elapsed / duration, 1);
+    if (t >= 1 || particleCount > 140) { clearInterval(trailInterval); return; }
+    const [px, py] = lerpWaypoint(t);
+    const p = document.createElement('div');
+    p.className = 'ghost-particle';
+    const angle = (Math.random() * 140 + 200) * Math.PI / 180;
+    const dist = 20 + Math.random() * 40;
+    p.style.setProperty('--px', (Math.cos(angle) * dist) + 'px');
+    p.style.setProperty('--py', (Math.sin(angle) * dist) + 'px');
+    p.style.setProperty('--dur', (0.4 + Math.random() * 0.5) + 's');
+    p.style.left = (px - 3) + 'px';
+    p.style.top  = (py - 3) + 'px';
+    p.style.width  = (3 + Math.random() * 5) + 'px';
+    p.style.height = p.style.width;
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 900);
+    particleCount++;
+  }, 10);
+
+  ghost.addEventListener('animationend', () => {
+    clearInterval(trailInterval);
+    ghost.remove();
+  });
 }
 function syncThemeButtons() {
   const mode = document.documentElement.getAttribute('data-theme') || 'light';
