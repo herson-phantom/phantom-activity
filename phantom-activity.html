@@ -911,7 +911,8 @@ const pages = {
   feedapi:     { title:'Live Data',    subtitle:'From API feed',         hasToggle:false, cats:['feedapi'] },
 };
 
-let activePage='cat-trading', legendFilter='all', assetScreen=false;
+const _hashPage = window.location.hash.slice(1);
+let activePage=_hashPage||'cat-trading', legendFilter='all', assetScreen=false;
 
 function buildAvatarHtml(tx, useAction, size = 40) {
   const pad = Math.round(9 * (size / 40));
@@ -1084,6 +1085,7 @@ function selectPage(id) {
   activePage=id; legendFilter='all'; assetScreen=false;
   document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
   const n=document.getElementById('nav-'+id); if(n) n.classList.add('active');
+  history.replaceState(null,'','#'+id);
   render();
 }
 function setFilter(f) { legendFilter=f; render(); }
@@ -1705,6 +1707,9 @@ function buildDetailHtml(tx, st, date, useAction) {
     </div>`;
 }
 
+// Highlight the correct nav item on load (handles hash-based deep links)
+document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+const _initNav=document.getElementById('nav-'+activePage); if(_initNav) _initNav.classList.add('active');
 render();
 syncThemeButtons();
 </script>
